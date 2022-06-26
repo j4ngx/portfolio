@@ -2,7 +2,7 @@ const ghpages = require('gh-pages');
 
 const pathname = `${__dirname}/build`;
 const repoURL =
-  'https://github.com/nikitastetskiy/nikitastetskiy.github.io.git';
+  'https://github.com/j4ngx/j4ngx.github.io.git';
 
 ghpages.publish(
   pathname,
