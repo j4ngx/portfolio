@@ -35,10 +35,10 @@ const MainBody = React.forwardRef(() => {
           {`${mainBody.firstName} ${mainBody.lastName}`}
         </h1>
         <div>
-          {/* 
-          
+          {/*
+
           Using componentWillReceiveProps (deprecated)
-          
+
           */}
           <div className="p-3">
             <Typist className="lead typist" cursor={{ show: false }}>
@@ -71,7 +71,7 @@ const MainBody = React.forwardRef(() => {
             aria-label="My Linkedin"
             target="_blank"
             rel="noreferrer noopener"
-            href="https://www.linkedin.com/in/nikitastetskiy"
+            href="https://www.linkedin.com/in/jose-antonio-navarro-guerrero-1b6b86194/"
           >
             <i className="icon fab fa-linkedin" aria-hidden="true" />
           </a>
@@ -79,7 +79,7 @@ const MainBody = React.forwardRef(() => {
             aria-label="My Github"
             target="_blank"
             rel="noreferrer noopener"
-            href="https://github.com/nikitastetskiy"
+            href="https://github.com/j4ngx"
           >
             <i className="icon fab fa-github-alt" aria-hidden="true" />
           </a>

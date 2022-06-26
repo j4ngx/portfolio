@@ -8,11 +8,11 @@ const mainBody = {
   gradientColors: '#FFFFFF, #3D3D3D, #000000',
   firstName: 'Jose Antonio',
   lastName: 'Navarro Guerrero',
-  firstMessage: ' The secret of getting ahead is getting started. ',
+  firstMessage: ' Dont document the problem;just fix it. ',
   secondMessage: [
-
-    'IT Engineer',
     'Backend Developer',
+    'Junior Developer',
+
   ],
 };
 
@@ -21,10 +21,9 @@ const mainBody = {
 const about = {
   heading: 'About Me',
   message:
-    'My name is Jose Antonio Navarro. I’m an IT engineer student from the University of Granada. In my spare time I enjoy improving my editing skills ' +
-    'and being engaging with projects that require me to work out of my comfort set, thus I am continually learning new languages and development ' +
-    "techniques. I'm improving myself to become a dedicated and efficient full stack developer. Establishing my strengths in application layers, " +
-    'presentation layers, databases and data structures.',
+    'My name is Jose Antonio Navarro. I\'m a junior student at Deverloper focused on the backend.'+
+    'In my free time I like to improve my skills as a developer, so I am continuously learning new languages'+
+    ' and development techniques. I am improving myself to become a dedicated and efficient backend developer.',
 };
 
 // PROJECTS SECTION
