@@ -20,10 +20,7 @@ const mainBody = {
 const about = {
   heading: 'About Me',
   message:
-    'My name is Nikita Stetskiy. I’m an IT engineer student from the University of Granada. In my spare time I enjoy improving my editing skills ' +
-    'and being engaging with projects that require me to work out of my comfort set, thus I am continually learning new languages and development ' +
-    "techniques. I'm improving myself to become a dedicated and efficient full stack developer. Establishing my strengths in application layers, " +
-    'presentation layers, databases and data structures.',
+    'My name is Jose Antonio Navarro Guerrero.',
 };
 
 // PROJECTS SECTION
@@ -34,7 +31,7 @@ const about = {
 
 const repos = {
   heading: 'Recent Projects',
-  gitHubUsername: 'nikitastetskiy',
+  gitHubUsername: 'j4ngx',
   reposLength: 4,
   specificRepos: [],
 };
