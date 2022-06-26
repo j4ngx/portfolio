@@ -6,13 +6,12 @@ const navBar = {};
 
 const mainBody = {
   gradientColors: '#FFFFFF, #3D3D3D, #000000',
-  firstName: 'Nikita',
-  lastName: 'Stetskiy',
+  firstName: 'Jose Antonio',
+  lastName: 'Navarro Guerrero',
   firstMessage: ' The secret of getting ahead is getting started. ',
   secondMessage: [
-    'Computer Science Student',
-    'IT Engineer',
-    'Full Stack Developer',
+    'Junior Developer',
+    'Backend Developer',
   ],
 };
 
@@ -52,7 +51,7 @@ const getInTouch = {
   heading: 'Get In Touch',
   message:
     'Thank you for your time and consideration. Feel free to email me at',
-  email: 'nikitastetskiy@gmail.com',
+  email: 'joseng2709@gmail.com',
 };
 
 export { navBar, mainBody, about, repos, skills, getInTouch };
