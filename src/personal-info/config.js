@@ -9,11 +9,7 @@ const mainBody = {
   firstName: 'Jose Antonio',
   lastName: 'Navarro Guerrero',
   firstMessage: ' Dont document the problem;just fix it. ',
-  secondMessage: [
-    'Backend Developer',
-    'Junior Developer',
-
-  ],
+  secondMessage: ['BackendDeveloper', 'JuniorDeveloper'],
 };
 
 // ABOUT SECTION
@@ -21,8 +17,8 @@ const mainBody = {
 const about = {
   heading: 'About Me',
   message:
-    'My name is Jose Antonio Navarro. I\'m a junior student at Deverloper focused on the backend.'+
-    'In my free time I like to improve my skills as a developer, so I am continuously learning new languages'+
+    'My name is Jose Antonio Navarro. Im a junior student at Deverloper focused on the backend.' +
+    'In my free time I like to improve my skills as a developer, so I am continuously learning new languages' +
     ' and development techniques. I am improving myself to become a dedicated and efficient backend developer.',
 };
 
