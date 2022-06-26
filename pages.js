@@ -7,7 +7,7 @@ const repoURL =
 ghpages.publish(
   pathname,
   {
-    branch: 'master',
+    branch: 'main',
     repo: repoURL,
   },
   (err) => {
