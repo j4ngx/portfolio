@@ -9,7 +9,7 @@ const mainBody = {
   firstName: 'Jose Antonio',
   lastName: 'Navarro Guerrero',
   firstMessage: ' Dont document the problem;just fix it. ',
-  secondMessage: ['BackendDeveloper', 'JuniorDeveloper'],
+  secondMessage: ['Backend Developer', 'Junior Developer'],
 };
 
 // ABOUT SECTION

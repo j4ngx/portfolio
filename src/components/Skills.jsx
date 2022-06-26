@@ -38,6 +38,9 @@ function Skills() {
               <i className="icons fab fa-git" />
               <i className="icons fab devicon-mysql-plain-wordmark" />
             </div>
+            <div className="tech">
+              <i className="icons fab fa-linux" />
+            </div>
           </div>
         </div>
       </Container>
