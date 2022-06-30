@@ -17,7 +17,7 @@ const mainBody = {
 const about = {
   heading: 'About Me',
   message:
-    'My name is Jose Antonio Navarro Guerrero. Im a Junior Deverloper focused on the backend.' +
+    'My name is Jose Antonio Navarro Guerrero. I am a Junior Developer focused on the backend. ' +
     'In my free time I like to improve my skills as a developer, so I am continuously learning new languages' +
     ' and development techniques. I am improving myself to become a dedicated and efficient backend developer.',
 };
