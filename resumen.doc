@@ -1,0 +1,119 @@
+Strategic Blueprint for a High-Impact Backend & Cybersecurity Portfolio
+
+In the hyperscale technological landscape of 2026, a Tech Lead’s portfolio has transcended the role of a traditional CV to become a living "architectural proof of concept." For a Senior Architect, this document serves as a definitive validation of the ability to design, deploy, and maintain systems that are not only scalable but fundamentally secure and observable. This blueprint prioritizes "Clean Architecture" and "Conventional" stack philosophies—not as a lack of innovation, but as a strategic choice to reduce cognitive load and mitigate state fragmentation across distributed SIEM environments. It is a narrative of technical maturity, demonstrating that resilient cybersecurity is built upon the bedrock of high-performance, idempotent backend engineering.
+
+1. Professional Identity & Executive Summary
+
+Senior Backend Developer | Cybersecurity Specialist | Tech Lead
+
+I am a Strategic Technical Architect specializing in the convergence of high-performance Python engineering and AI-driven security automation. My expertise lies in architecting idempotent data pipelines that bridge the gap between complex backend logic and enterprise-grade Security Operations (SecOps). By mastering the API-First paradigm and the FastAPI ecosystem, I drive interoperability in multinational environments, reducing manual triage time by implementing sophisticated SOAR (Security Orchestration, Automation, and Response) platforms. Utilizing a modern, performant stack—including Poetry, UV, and Pydantic v2—I engineer production-ready systems that prioritize security-by-design, ensuring that automation reduces operational friction rather than increasing technical debt.
+
+My trajectory is defined by a shift from managing infrastructure to architecting the intelligent systems that protect it, moving beyond simple feature delivery to strategic system resilience.
+
+2. Professional Timeline: Narrative of Growth and Leadership
+
+A narrative timeline is the superior format for leadership roles as it contextualizes the "why" behind architectural decisions, illustrating a progression from execution to strategic orchestration.
+
+Phase 1: The Infrastructure Foundation
+
+Sysadmin Internship | GrupoIWI
+
+* Narrative: My career began in the trenches of server stability and infrastructure mechanics.
+* Strategic Impact: This phase established my "Secure-by-Design" philosophy. By understanding the underlying behavior of networking and OS layers, I ensured that later architectural decisions were never abstracted away from the physical and virtual realities of production environments.
+
+Phase 2: Specialization in Security Automation
+
+Backend Developer | Classora
+
+* Narrative: Transitioned into cybersecurity automation, focusing on the birth of AI-powered SOAR platforms and real-time data integrations.
+* Strategic Impact: Engineered high-throughput integration layers that scaled to 100k events/hour. By mastering real-time data flows from providers like CrowdStrike, I moved beyond standard CRUD logic to architecting event-driven systems that directly reduced hardware overhead for SIEM ingestion by optimizing data curation before storage.
+
+Phase 3: Technical Leadership & Global Orchestration
+
+Tech Lead | Current Multinational Role
+
+* Narrative: Currently serving as a Senior Architect and bridge between executive stakeholders and multidisciplinary engineering teams.
+* Strategic Impact: As a Tech Lead, I manage stakeholder requirements by enforcing strict adherence to Clean Architecture. My focus is on maintaining system observability and ensuring that security automation scales horizontally across international borders without compromising performance or security integrity.
+
+3. Technical Ecosystem: The Modern Python Stack
+
+In 2026, I champion a "conventional" yet high-performance stack. Choosing battle-tested, "boring" technologies is a strategic maneuver: it ensures system stability, eases developer onboarding, and provides operational clarity. This stack facilitates a Clean Architecture (Routes → Services → Repositories → Models), utilizing Dependency Injection to ensure business logic remains decoupled from infrastructure.
+
+Core Languages & Frameworks
+
+* Python (Expert): Specializing in asynchronous programming and Pydantic v2 for strict type safety and performance.
+* FastAPI: Chosen for its native OpenAPI support and high-speed asynchronous capabilities.
+* Django & Flask: Leveraged for robust monolithic structures or lightweight micro-services when the architectural context demands.
+
+Tooling & Performance
+
+* Poetry & UV: Utilized for rigorous dependency management. I specifically use UV to reduce CI/CD build times (O(seconds) vs O(minutes)), a critical metric for optimizing multinational runner costs.
+* asdf: Ensures consistent runtime versions across global teams, eliminating environment-specific friction.
+* Alembic: Employed for linear, reviewable migrations, ensuring database schema integrity during rapid deployments.
+
+Cybersecurity & SOAR
+
+* Cortex XSOAR & CrowdStrike: Mastery of OAuth2 API integration and FQL (Falcon Query Language) to curate intelligence rather than just ingest raw data.
+* AI-Driven Detection: Implementation of NLP and RAG (Retrieval-Augmented Generation) for anomaly detection and triage prioritization.
+
+Infrastructure & DevOps
+
+* Azure Fundamentals (AZ-900): Designing cloud-native architectures with a focus on security and scalability.
+* Docker & CI/CD: Containerization and automated pipelines (GitHub Actions) to ensure that "works on my machine" translates to "stable in production."
+
+4. Project Gallery: Impact-Driven Case Studies
+
+Following the Background, Process, and Outcome framework, these studies highlight my ability to navigate "the mess in the middle" to deliver high-value business outcomes.
+
+Project 1: Enterprise SOAR Platform with AI Chat
+
+* Background: Multinational security analysts faced extreme fatigue due to fragmented alerts and high manual triage overhead.
+* Process: I integrated LLMs into the SOAR workflow using a RAG-enhanced pipeline. The "mess in the middle" involved optimizing vector storage and prompt engineering to ensure grounded answers based on internal documentation, while managing API rate limits and concurrency locks.
+* Outcome:
+
+Technical Challenge	Business Impact / Metric
+High triage latency and analyst fatigue.	70% reduction in manual triage time via AI summarization.
+Grounding AI responses in private data.	Latency Optimized: Achieved average RAG response times of ~1.2s.
+
+Project 2: SIEM/EDR High-Performance Integration Layer
+
+* Background: The need to synchronize massive volumes of real-time detection data from CrowdStrike Falcon into a centralized Cortex XSOAR environment.
+* Process: Developed a multi-threaded integration layer using FQL to refine data collection. I utilized OAuth2 for secure authentication and implemented Redis for state fanning. The primary challenge was handling race conditions during incident mirroring.
+* Outcome:
+
+Technical Challenge	Business Impact / Metric
+Scaling ingestion of CrowdStrike detections.	Zero-Loss Reliability: Successfully handled 100k+ events/hour.
+Incident mirroring synchronization.	Sub-200ms latency for incident ingestion and automated fetching.
+
+Project 3: Internal API-First Ecosystem (Production Boilerplate)
+
+* Background: Lack of standardization across microservices led to mounting integration debt and slow developer onboarding.
+* Process: Architected a production-ready FastAPI boilerplate (inspired by the Jean-Gaël philosophy). I implemented the Repository Pattern and Dependency Injection to decouple data access from business logic, ensuring the stack remained "boring" but highly scalable.
+* Outcome:
+
+Technical Challenge	Business Impact / Metric
+Integration debt and lack of schema safety.	40% faster onboarding via standardized OpenAPI/Swagger docs.
+Decoupling business logic from DB layers.	Reduced Technical Debt: Modular design allows for independent service scaling.
+
+5. Certifications, Education & Core Skills
+
+Continuous specialized learning provides the foundational logic required to architect secure systems. My certifications directly inform the complex playbooks and integrations showcased in my projects.
+
+* Certifications:
+  * Siemplify Certified Security Developer (SCSD) & Analyst (SCSA): These provided the foundational logic for the AI-driven playbooks developed in my SOAR projects.
+  * Microsoft Azure Fundamentals (AZ-900): Validation of cloud-native security and infrastructure design.
+* Academic Background:
+  * Bachelor of Science (B.Sc.) | University of Granada (UGR): Rigorous training in algorithms and data structures.
+* Executive Skills:
+  * Stakeholder Management: Translating technical debt into business risk for executive buy-in.
+  * Strategic Architecture: Enforcing Clean Architecture to ensure long-term system maintainability.
+
+6. Global Availability & Engagement
+
+I am open to technical discussions and collaborative opportunities regarding the future of secure, automated backend systems. My focus remains on architecting systems that are resilient by design and operationally "boring."
+
+* 📍 Location: Granada, Spain (Remote / International Availability)
+* 📧 Email: joseng2709@gmail.com
+* 🌐 Networking: [LinkedIn] | [GitHub]
+
+Final Word: In 2026, my mission is to make architecture boring—eliminating the "clever" complexity that breeds vulnerabilities—so that the security outcomes can be extraordinary. By combining the precision of modern Python with the intelligence of AI, we can build a digital infrastructure that is not just resilient to attacks, but effectively invisible to the adversary.

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JOSE ANTONIO NAVARRO GUERRERO | Backend Python Developer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#195de6",
+                        "pussywillow": "#D3D6DB",
+                        "pussywillow-dark": "#BCC0C5",
+                        "background-light": "#D3D6DB",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #0000000a 1px, transparent 1px), linear-gradient(to bottom, #0000000a 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #D3D6DB;
+        }
+        .bg-grid {
+            background-size: 40px 40px;
+        }
+        .glass-panel {
+            background: rgba(211, 214, 219, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .terminal-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .terminal-scroll::-webkit-scrollbar-track {
+            background: #0f131a; 
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-pussywillow text-slate-900 font-display selection:bg-primary selection:text-white antialiased">
+<div class="fixed inset-0 pointer-events-none z-0 bg-grid bg-grid-pattern opacity-40"></div>
+<nav class="fixed w-full z-50 glass-panel border-b border-slate-300">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+<span class="font-bold text-lg text-black tracking-tight uppercase">JOSE ANTONIO NAVARRO <span class="text-primary">GUERRERO</span></span>
+</div>
+<div class="hidden md:block">
+<div class="ml-10 flex items-baseline space-x-8 text-sm font-medium">
+<a class="text-slate-700 hover:text-primary transition-colors" href="#summary">./summary</a>
+<a class="text-slate-700 hover:text-primary transition-colors" href="#experience">./timeline</a>
+<a class="text-slate-700 hover:text-primary transition-colors" href="#stack">./stack</a>
+<a class="text-slate-700 hover:text-primary transition-colors" href="#education">./academic</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="hidden md:inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-green-100 text-green-700 border border-green-200 font-mono">
+                    STATUS: AVAILABLE
+                </span>
+<a class="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium transition-colors shadow-lg shadow-primary/20" href="mailto:joseng2709@gmail.com">
+                    Contact
+                </a>
+</div>
+</div>
+</div>
+</nav>
+<main class="relative z-10 pt-16">
+<section class="min-h-[90vh] flex items-center justify-center py-20 relative overflow-hidden" id="summary">
+<div class="absolute top-0 right-0 w-1/2 h-full bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-white border border-slate-300 text-xs font-mono text-primary font-semibold shadow-sm">
+<span class="material-icons text-sm">security</span>
+                    BACKEND PYTHON DEVELOPER &amp; TECH LEAD
+                </div>
+<h1 class="text-5xl md:text-6xl font-extrabold text-black leading-tight tracking-tight">
+                    Building <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Secure Backend</span><br/>
+                    Infrastructures.
+                </h1>
+<div class="bg-white/50 border border-slate-300 rounded-lg p-5 space-y-2 text-sm text-slate-700 font-medium">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+<span>Granada, Spain</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-lg">phone_iphone</span>
+<span>(+34) 722 666 152</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-lg">mail</span>
+<span>joseng2709@gmail.com</span>
+</div>
+<div class="flex items-center gap-4 pt-2">
+<a class="flex items-center gap-1 text-primary hover:underline" href="#"><span class="material-icons text-sm">link</span> GitHub</a>
+<a class="flex items-center gap-1 text-primary hover:underline" href="#"><span class="material-icons text-sm">link</span> LinkedIn</a>
+</div>
+</div>
+<p class="text-lg text-slate-700 max-w-lg leading-relaxed border-l-4 border-primary pl-6">
+                    Backend Python Developer with strong experience building APIs and backend services (mainly FastAPI and Django/Flask) in security-focused environments for multinational companies. Specialized in integrating security platforms and automating incident response.
+                </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="group flex items-center gap-3 bg-white border border-slate-300 hover:border-primary text-black px-6 py-3 rounded font-medium transition-all shadow-sm">
+<span class="material-icons text-primary group-hover:scale-110 transition-transform">description</span>
+                        Download CV
+                    </button>
+<a class="group flex items-center gap-3 bg-transparent text-slate-700 hover:text-primary px-6 py-3 rounded font-medium transition-all" href="#experience">
+                        Professional History
+                        <span class="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="relative w-full aspect-square md:aspect-video lg:aspect-square max-h-[600px] flex items-center justify-center">
+<div class="w-full bg-[#0d1117] rounded-lg border-8 border-pussywillow-dark shadow-2xl overflow-hidden flex flex-col h-full max-h-[500px]">
+<div class="bg-[#161b22] px-4 py-3 flex items-center justify-between border-b border-slate-800">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-red-500"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+<div class="w-3 h-3 rounded-full bg-green-500"></div>
+</div>
+<div class="text-xs text-slate-400 font-mono">jose@workstation:~/summary</div>
+<div class="w-4"></div>
+</div>
+<div class="p-6 font-mono text-sm md:text-base text-slate-300 overflow-y-auto terminal-scroll flex-1">
+<div class="mb-4">
+<span class="text-green-400">➜</span> <span class="text-blue-400">~</span> <span class="text-slate-100">cat vision.py</span>
+</div>
+<div class="pl-4 space-y-1">
+<span class="text-purple-400">def</span> <span class="text-yellow-400">get_professional_summary</span>():<br/>
+<div class="pl-4">
+<span class="text-slate-400">"""</span><br/>
+<span class="text-slate-400">Acts as technical lead for several internal projects, defining technical direction and managing delivery in Agile teams.</span><br/>
+<span class="text-slate-400">Experienced with modern Python tooling (Poetry, UV, asdf), CI/CD pipelines and cloud services (AWS, Azure).</span><br/>
+<span class="text-slate-400">"""</span><br/>
+<span class="text-purple-400">return</span> {<br/>
+<div class="pl-4">
+<span class="text-blue-300">"focus"</span>: <span class="text-green-300">"API-first design"</span>,<br/>
+<span class="text-blue-300">"architecture"</span>: <span class="text-green-300">"Hexagonal"</span>,<br/>
+<span class="text-blue-300">"mission"</span>: <span class="text-green-300">"Automate security workflows"</span><br/>
+</div>
+                                }
+                            </div>
+</div>
+<div class="mt-4 animate-pulse">
+<span class="text-green-400">➜</span> <span class="text-blue-400">~</span> <span class="inline-block w-2 h-4 bg-slate-400 align-middle"></span>
+</div>
+</div>
+</div>
+<div class="absolute -z-10 -bottom-4 -right-4 w-full h-full border border-primary/20 rounded-lg"></div>
+<div class="absolute -z-10 -top-4 -left-4 w-full h-full border border-slate-400 border-dashed rounded-lg"></div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-white relative" id="experience">
+<div class="max-w-5xl mx-auto px-4 sm:px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-black mb-4">Professional Experience</h2>
+<p class="text-slate-700 max-w-2xl mx-auto">Career path focused on high-stakes cybersecurity and automation engineering.</p>
+</div>
+<div class="relative">
+<div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 transform -translate-x-1/2"></div>
+<div class="relative flex flex-col md:flex-row items-center justify-between mb-20 group">
+<div class="order-1 w-full md:w-[45%] pl-20 md:pl-0 md:pr-12 md:text-right">
+<h3 class="text-xl font-bold text-black">Backend Python Developer &amp; Tech Lead</h3>
+<div class="text-primary font-mono text-sm mb-1">Classora Technologies – Granada, Spain</div>
+<div class="text-slate-500 font-mono text-xs mb-4">Oct 2023 – Present</div>
+<ul class="text-slate-700 text-sm leading-relaxed space-y-2 md:text-right list-none">
+<li>• Designed and developed internal cybersecurity applications using FastAPI and hexagonal architecture.</li>
+<li>• Built and integrated solutions with Cortex XSOAR and multiple cybersecurity APIs to automate incident response.</li>
+<li>• Took ownership of internal applications as Product Owner/Tech Lead, managing backlogs.</li>
+</ul>
+</div>
+<div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full ring-4 ring-white z-10"></div>
+<div class="order-1 w-full md:w-[45%] pl-20 md:pl-12">
+<div class="bg-pussywillow/30 p-4 rounded border border-slate-200 text-xs font-mono text-slate-600">
+                            Tech stack: FastAPI, OpenAPI, XSOAR, Torq, Poetry, UV, asdf, CyberArk, Agile.
+                        </div>
+</div>
+</div>
+<div class="relative flex flex-col md:flex-row items-center justify-between mb-20 group">
+<div class="order-1 md:order-2 w-full md:w-[45%] pl-20 md:pl-12">
+<h3 class="text-xl font-bold text-black">Intermediate Tech Cybersecurity / Backend Developer</h3>
+<div class="text-primary font-mono text-sm mb-1">Cipher | A Prosegur Company – Granada</div>
+<div class="text-slate-500 font-mono text-xs mb-4">Jul 2023 – Oct 2023</div>
+<ul class="text-slate-700 text-sm leading-relaxed space-y-2 list-none">
+<li>• Led the development of a SOAR platform with AI-assisted incident response.</li>
+<li>• Developed RESTful APIs using Django to support platform modules and data visualization.</li>
+<li>• Built an AI-driven conversational interface for automated reports and visual analytics.</li>
+</ul>
+</div>
+<div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-slate-400 rounded-full ring-4 ring-white z-10"></div>
+<div class="order-1 md:order-1 w-full md:w-[45%] pl-20 md:pr-12 md:text-right hidden md:block">
+<div class="bg-pussywillow/30 p-4 rounded border border-slate-200 text-xs font-mono text-slate-600">
+                            Tech stack: Django, Elastic Cloud, CrowdStrike, SCADAfence, AI Interface.
+                        </div>
+</div>
+</div>
+<div class="relative flex flex-col md:flex-row items-center justify-between mb-20 group">
+<div class="order-1 w-full md:w-[45%] pl-20 md:pl-0 md:pr-12 md:text-right">
+<h3 class="text-xl font-bold text-black">DevOps and Threat Intelligence Junior Analyst</h3>
+<div class="text-primary font-mono text-sm mb-1">Cipher | A Prosegur Company – Granada</div>
+<div class="text-slate-500 font-mono text-xs mb-4">Aug 2022 – Jul 2023</div>
+<ul class="text-slate-700 text-sm leading-relaxed space-y-2 md:text-right list-none">
+<li>• Developed custom Python actions for Siemplify SOAR to automate response workflows.</li>
+<li>• Created data synchronization jobs between security platforms using REST APIs.</li>
+<li>• Worked with AWS infrastructure to support deployment of automation services.</li>
+</ul>
+</div>
+<div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-slate-400 rounded-full ring-4 ring-white z-10"></div>
+<div class="order-1 w-full md:w-[45%] pl-20 md:pl-12">
+<div class="bg-pussywillow/30 p-4 rounded border border-slate-200 text-xs font-mono text-slate-600">
+                            Tech stack: Siemplify, AWS, Flask, REST APIs, Automation.
+                        </div>
+</div>
+</div>
+<div class="relative flex flex-col md:flex-row items-center justify-between group">
+<div class="order-1 md:order-2 w-full md:w-[45%] pl-20 md:pl-12">
+<h3 class="text-xl font-bold text-black">Systems Administrator Intern</h3>
+<div class="text-primary font-mono text-sm mb-1">Grupo IWI – Granada, Spain</div>
+<div class="text-slate-500 font-mono text-xs mb-4">Apr 2022 – Aug 2022</div>
+<ul class="text-slate-700 text-sm leading-relaxed space-y-2 list-none">
+<li>• Assisted with administration and maintenance of Linux and Windows servers.</li>
+<li>• Supported IT operations including system monitoring and troubleshooting.</li>
+<li>• Collaborated on updates to internal services and documentation.</li>
+</ul>
+</div>
+<div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-slate-300 rounded-full ring-4 ring-white z-10"></div>
+<div class="order-1 md:order-1 w-full md:w-[45%] pl-20 md:pr-12 md:text-right hidden md:block">
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-pussywillow border-y border-slate-300" id="stack">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12">
+<div>
+<h2 class="text-3xl md:text-4xl font-bold text-black">Technical Ecosystem</h2>
+<p class="text-slate-700 mt-2">Comprehensive skill set for building production-ready security solutions.</p>
+</div>
+<div class="hidden md:block">
+<span class="font-mono text-xs text-slate-600 bg-white px-3 py-1 rounded shadow-sm border border-slate-300">stack_v4.2.0</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="group bg-white p-6 rounded shadow-sm border border-slate-300 hover:border-primary/50 transition-all">
+<h3 class="text-lg font-bold text-black mb-4 flex items-center gap-2">
+<span class="w-2 h-2 bg-blue-500 rounded-full"></span> Languages &amp; Foundations
+                    </h3>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Python</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">SQL</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">JSON</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">English (C1)</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Spanish (Native)</span>
+</div>
+</div>
+<div class="group bg-white p-6 rounded shadow-sm border border-slate-300 hover:border-primary/50 transition-all">
+<h3 class="text-lg font-bold text-black mb-4 flex items-center gap-2">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span> Backend &amp; APIs
+                    </h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">FastAPI</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Django</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Flask</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">RESTful</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">OpenAPI</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Hexagonal Architecture</span>
+</div>
+</div>
+<div class="group bg-white p-6 rounded shadow-sm border border-slate-300 hover:border-primary/50 transition-all">
+<h3 class="text-lg font-bold text-black mb-4 flex items-center gap-2">
+<span class="w-2 h-2 bg-red-500 rounded-full"></span> Security &amp; SOAR
+                    </h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Cortex XSOAR</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Siemplify</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Torq</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">SIEM/EDR</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Incident Response</span>
+</div>
+</div>
+<div class="group bg-white p-6 rounded shadow-sm border border-slate-300 hover:border-primary/50 transition-all">
+<h3 class="text-lg font-bold text-black mb-4 flex items-center gap-2">
+<span class="w-2 h-2 bg-purple-500 rounded-full"></span> Cloud &amp; DevOps
+                    </h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">AWS</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Azure</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Docker</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">CI/CD</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Git/GitHub/GitLab</span>
+</div>
+</div>
+<div class="group bg-white p-6 rounded shadow-sm border border-slate-300 hover:border-primary/50 transition-all">
+<h3 class="text-lg font-bold text-black mb-4 flex items-center gap-2">
+<span class="w-2 h-2 bg-yellow-500 rounded-full"></span> Databases &amp; OS
+                    </h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">MySQL</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">SQL Server</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">MongoDB</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Linux</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Windows Server</span>
+</div>
+</div>
+<div class="group bg-white p-6 rounded shadow-sm border border-slate-300 hover:border-primary/50 transition-all">
+<h3 class="text-lg font-bold text-black mb-4 flex items-center gap-2">
+<span class="w-2 h-2 bg-slate-900 rounded-full"></span> Tools &amp; Environment
+                    </h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Poetry</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">UV</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">asdf</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">Postman</span>
+<span class="px-2 py-1 bg-pussywillow/50 rounded text-xs font-mono text-slate-700">CyberArk</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-white" id="projects">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-12">
+<h2 class="text-3xl md:text-4xl font-bold text-black">Project Manifest</h2>
+<p class="text-slate-700 mt-2">Selected architectural challenges and outcomes.</p>
+</div>
+<div class="space-y-8">
+<div class="bg-pussywillow rounded border border-slate-300 overflow-hidden group shadow-sm">
+<div class="grid grid-cols-1 lg:grid-cols-12">
+<div class="lg:col-span-4 relative h-64 lg:h-auto overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10 lg:hidden"></div>
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75" data-alt="Abstract server rack lights with blue and teal gradients representing fintech data flow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByJ2B9PVNKVvQXOYw7zWl-seH6BFdZ-GJK55skErbadabfZU6g4VkKaeweP1itvoilSvAmvasMx1Lvqw4LBKFZb8icQ-jOXV-Pa9sHUGzOpeKgGKfUh5uS6aLQwneM7zT5GXaYDfd2zLb2P19_Swm-8E7N5lOCTXe7f-j2ckr6cv51pyM8NNEwK2hFcBF1e5BdPNa3h2NjFOqr0MP7TDu9Ae4ADONvzvWaIwW6oM_T5JRwHTLdBvyw5j46Nbj2WeSXjmyuHRaUr-Kw"/>
+<div class="absolute bottom-4 left-4 z-20">
+<h3 class="text-2xl font-bold text-white uppercase">Automated IR</h3>
+<p class="text-slate-200 text-sm font-mono">SOAR Integration Hub</p>
+</div>
+</div>
+<div class="lg:col-span-8 p-8 grid grid-cols-1 md:grid-cols-3 gap-8 bg-white">
+<div>
+<h4 class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Background</h4>
+<p class="text-sm text-slate-700 leading-relaxed">
+                                    Need to optimize incident response for a large multinational using FastAPI and OpenAPI-first approach.
+                                </p>
+</div>
+<div>
+<h4 class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Process</h4>
+<p class="text-sm text-slate-700 leading-relaxed">
+                                    Implemented hexagonal architecture for long-term maintainability. Connected XSOAR with custom Python-based security APIs.
+                                </p>
+</div>
+<div>
+<h4 class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Outcome</h4>
+<div class="flex flex-col gap-4 mt-2">
+<div>
+<span class="text-3xl font-bold text-black">80%</span>
+<span class="text-xs text-slate-500 block">Reduction in Response Time</span>
+</div>
+<div>
+<span class="text-3xl font-bold text-black">Scalable</span>
+<span class="text-xs text-slate-500 block">Production Ready Code</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-pussywillow border-t border-slate-300" id="education">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<div>
+<h2 class="text-3xl font-bold text-black mb-8 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">school</span> EDUCATION
+                    </h2>
+<div class="space-y-8">
+<div class="bg-white p-6 rounded shadow-sm border border-slate-300">
+<h3 class="font-bold text-black">Higher Technician in Networked Computer Systems Administration (ASIR)</h3>
+<div class="text-primary text-sm font-mono">IES Zaidín Vergeles – Granada, Spain</div>
+<div class="text-slate-500 text-xs mt-1">Sep 2021 – Aug 2023</div>
+</div>
+<div class="bg-white p-6 rounded shadow-sm border border-slate-300">
+<h3 class="font-bold text-black">Software Engineering (ongoing)</h3>
+<div class="text-primary text-sm font-mono">Universidad de Granada – Granada, Spain</div>
+<div class="text-slate-500 text-xs mt-1">Sep 2017 – Present</div>
+</div>
+<div class="bg-white p-6 rounded shadow-sm border border-slate-300">
+<h3 class="font-bold text-black">Science Bachelor</h3>
+<div class="text-primary text-sm font-mono">IES Luis Bueno Crespo – Granada, Spain</div>
+<div class="text-slate-500 text-xs mt-1">Sep 2015 – Aug 2017</div>
+</div>
+</div>
+</div>
+<div>
+<h2 class="text-3xl font-bold text-black mb-8 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">verified</span> CERTIFICATIONS
+                    </h2>
+<div class="grid grid-cols-1 gap-4">
+<div class="bg-white p-4 rounded shadow-sm border border-slate-300 flex items-center gap-4">
+<span class="material-icons text-primary">military_tech</span>
+<div>
+<p class="font-bold text-black text-sm">Microsoft Certified: Azure Fundamentals (AZ‑900)</p>
+<p class="text-slate-500 text-xs">2025</p>
+</div>
+</div>
+<div class="bg-white p-4 rounded shadow-sm border border-slate-300 flex items-center gap-4">
+<span class="material-icons text-primary">military_tech</span>
+<div>
+<p class="font-bold text-black text-sm">Siemplify Certified SOAR Developer (SCSD)</p>
+<p class="text-slate-500 text-xs">2022</p>
+</div>
+</div>
+<div class="bg-white p-4 rounded shadow-sm border border-slate-300 flex items-center gap-4">
+<span class="material-icons text-primary">military_tech</span>
+<div>
+<p class="font-bold text-black text-sm">Siemplify Platform Fundamentals – Version 6+ (SPFv6)</p>
+<p class="text-slate-500 text-xs">2022</p>
+</div>
+</div>
+<div class="bg-white p-4 rounded shadow-sm border border-slate-300 flex items-center gap-4">
+<span class="material-icons text-primary">military_tech</span>
+<div>
+<p class="font-bold text-black text-sm">Siemplify Certified SOAR Analyst (SCSA)</p>
+<p class="text-slate-500 text-xs">2022</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 relative overflow-hidden" id="contact">
+<div class="absolute inset-0 bg-primary/5"></div>
+<div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+<span class="font-mono text-primary text-sm mb-4 block uppercase tracking-widest">Let's Connect</span>
+<h2 class="text-4xl md:text-5xl font-bold text-black mb-8 leading-tight">Ready to optimize your security operations?</h2>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<a class="bg-primary hover:bg-blue-600 text-white px-8 py-4 rounded text-lg font-medium shadow-lg shadow-primary/25 transition-all transform hover:-translate-y-1" href="mailto:joseng2709@gmail.com">
+                    Email: joseng2709@gmail.com
+                </a>
+<a class="bg-white border border-slate-300 text-black px-8 py-4 rounded text-lg font-medium hover:bg-slate-50 transition-all shadow-sm" href="#">
+                    Download Full Portfolio
+                </a>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 font-mono text-xs md:text-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col md:flex-row items-center gap-4">
+<span>© 2024 JOSE ANTONIO NAVARRO GUERRERO</span>
+<span class="hidden md:inline text-slate-700">|</span>
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                System Operational
+            </span>
+</div>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">GITHUB</a>
+<a class="hover:text-white transition-colors" href="#">LINKEDIN</a>
+</div>
+<div class="text-slate-600">
+            v3.2.1 build_2024_rev2
+        </div>
+</div>
+</footer>
+
+</body></html>
