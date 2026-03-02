@@ -32,14 +32,14 @@ export interface Experience {
 export const EXPERIENCES: Experience[] = [
   {
     id: 'classora',
-    title: 'Backend Python Developer & Tech Lead',
+    title: 'Backend Python Developer',
     company: 'Classora Technologies',
     location: 'Granada, Spain',
     period: 'Oct 2023 – Present',
     bullets: [
       'Designed and developed internal cybersecurity applications using FastAPI and hexagonal architecture.',
       'Built and integrated solutions with Cortex XSOAR and multiple cybersecurity APIs to automate incident response.',
-      'Took ownership of internal applications as Product Owner/Tech Lead, managing backlogs and defining technical direction.',
+      'Took ownership of internal applications as Tech Lead, managing backlogs and defining technical direction.',
       'Led Agile teams, defining architecture standards and enforcing Clean Architecture principles across projects.',
     ],
     techStack: 'FastAPI, OpenAPI, XSOAR, Torq, Poetry, UV, asdf, CyberArk, Agile',
