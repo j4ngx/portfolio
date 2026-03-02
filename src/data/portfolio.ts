@@ -146,6 +146,7 @@ export interface Project {
   tags: string[]
   sections: ProjectSection[]
   outcomes: ProjectOutcome[]
+  github?: string
 }
 
 export const PROJECTS: Project[] = [
@@ -235,6 +236,96 @@ export const PROJECTS: Project[] = [
       { metric: 'Modular', label: 'Independent service scaling' },
       { metric: '12+', label: 'Services built on boilerplate' },
     ],
+  },
+  {
+    id: 'forge-mcp',
+    icon: '🔧',
+    title: 'Forge MCP',
+    subtitle: 'AI-Powered Developer Productivity Server',
+    tags: ['Python', 'MCP', 'LLM', 'GitHub Copilot', 'VS Code'],
+    sections: [
+      {
+        heading: 'What it does',
+        content:
+          'A Model Context Protocol (MCP) server that exposes developer-productivity tools inside VS Code via GitHub Copilot Agent Mode. Includes senior-level PR code review and end-to-end GitHub issue implementation with mandatory approval gates.',
+      },
+      {
+        heading: 'Architecture',
+        content:
+          'Prompt-driven design where each tool loads its system prompt from dedicated Markdown files. Integrates with GitHub MCP for issue fetching, uses gh buddy for branch management, and self-reviews code before creating PRs.',
+      },
+      {
+        heading: 'Impact',
+        content:
+          'Automates the full developer workflow: read issue → create branch → implement → self-review → open PR. Structured Markdown reviews cover logic, design, security, performance, testing, and readability.',
+      },
+    ],
+    outcomes: [
+      { metric: '2', label: 'Core tools (review_pr, apply_issue)' },
+      { metric: '7', label: 'Review dimensions covered' },
+      { metric: 'E2E', label: 'Issue-to-PR automation' },
+    ],
+    github: 'https://github.com/j4ngx/Forge_MCP',
+  },
+  {
+    id: 'glados-installer',
+    icon: '🤖',
+    title: 'GLaDOS Installer',
+    subtitle: 'All-in-One Local AI Assistant Stack',
+    tags: ['Bash', 'Docker', 'Ollama', 'Linux', 'Networking', 'Security'],
+    sections: [
+      {
+        heading: 'What it does',
+        content:
+          'A professional, modular installer that sets up a complete local AI assistant environment on Debian-based systems. Orchestrates 17 library modules across 4 installation phases — from system foundations to server hardening.',
+      },
+      {
+        heading: 'Stack',
+        content:
+          'Ollama + Meta Llama 3 for LLM runtime, OpenClaw as personal AI assistant, whisper.cpp for offline STT, Piper TTS for speech synthesis, SearXNG for web search, plus static IP, swap, GPU acceleration, UFW firewall, and Telegram bot integration.',
+      },
+      {
+        heading: 'Engineering',
+        content:
+          'Idempotent design safe to re-run. Strict error handling with set -Eeuo pipefail and trap handlers. Pre-flight validation of RAM, disk, CPU, and network. Full logging, backup/restore, and 30+ CLI flags for fine-grained control.',
+      },
+    ],
+    outcomes: [
+      { metric: '17', label: 'Independent library modules' },
+      { metric: '30+', label: 'CLI configuration flags' },
+      { metric: '14', label: 'Components orchestrated' },
+    ],
+    github: 'https://github.com/j4ngx/GLaDos-Installer',
+  },
+  {
+    id: 'portfolio',
+    icon: '🌐',
+    title: 'Developer Portfolio',
+    subtitle: 'Modern React + Tailwind CSS v4 SPA',
+    tags: ['React', 'TypeScript', 'Tailwind CSS v4', 'Vite', 'GitHub Pages'],
+    sections: [
+      {
+        heading: 'What it does',
+        content:
+          'A responsive single-page portfolio application showcasing professional experience, projects, tech stack, and certifications. Data-driven architecture with a single source of truth for all content.',
+      },
+      {
+        heading: 'Tech choices',
+        content:
+          'Built with Vite 7, React 19, TypeScript, and Tailwind CSS v4. Features smooth scroll navigation, fade-in animations, an interactive terminal component, and a dark professional theme.',
+      },
+      {
+        heading: 'Deployment',
+        content:
+          'Automated CI/CD via GitHub Actions deploying to GitHub Pages on every push to main. Branch protection enforced with required reviews.',
+      },
+    ],
+    outcomes: [
+      { metric: '< 2s', label: 'Initial page load' },
+      { metric: '100%', label: 'Responsive on all devices' },
+      { metric: 'Auto', label: 'CI/CD deploy on merge' },
+    ],
+    github: 'https://github.com/j4ngx/portfolio',
   },
 ]
 
