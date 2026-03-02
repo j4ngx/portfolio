@@ -9,7 +9,7 @@ export const PERSONAL = {
   location: 'Granada, Spain',
   phone: '(+34) 722 666 152',
   email: 'joseng2709@gmail.com',
-  github: 'https://github.com/joseng2709',
+  github: 'https://github.com/j4ngx',
   linkedin: 'https://linkedin.com/in/joseng2709',
   available: true,
 } as const
