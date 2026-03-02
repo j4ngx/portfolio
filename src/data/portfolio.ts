@@ -9,7 +9,7 @@ export const PERSONAL = {
   location: 'Granada, Spain',
   phone: '(+34) 722 666 152',
   email: 'joseng2709@gmail.com',
-  github: 'https://github.com/joseng2709',
+  github: 'https://github.com/j4ngx',
   linkedin: 'https://linkedin.com/in/joseng2709',
   available: true,
 } as const
@@ -149,7 +149,7 @@ export interface Project {
   github?: string
 }
 
-export const PROJECTS: Project[] = [
+export const PROFESSIONAL_PROJECTS: Project[] = [
   {
     id: 'soar-ai',
     icon: '🤖',
@@ -237,6 +237,9 @@ export const PROJECTS: Project[] = [
       { metric: '12+', label: 'Services built on boilerplate' },
     ],
   },
+]
+
+export const PERSONAL_PROJECTS: Project[] = [
   {
     id: 'forge-mcp',
     icon: '🔧',

@@ -1,4 +1,4 @@
-import { PROJECTS, type Project } from '../data/portfolio'
+import { PROFESSIONAL_PROJECTS, PERSONAL_PROJECTS, type Project } from '../data/portfolio'
 import FadeInSection from './FadeInSection'
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
@@ -81,17 +81,34 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Professional Projects */}
         <FadeInSection>
           <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">Project Manifest</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">Professional Projects</h2>
             <p className="text-subtle mt-2">
-              Selected architectural challenges and outcomes.
+              Selected architectural challenges and outcomes from enterprise environments.
             </p>
           </div>
         </FadeInSection>
 
         <div className="space-y-8">
-          {PROJECTS.map((project, i) => (
+          {PROFESSIONAL_PROJECTS.map((project, i) => (
+            <ProjectCard key={project.id} project={project} index={i} />
+          ))}
+        </div>
+
+        {/* Personal / Open-Source Projects */}
+        <FadeInSection>
+          <div className="mt-20 mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">Open-Source Projects</h2>
+            <p className="text-subtle mt-2">
+              Personal projects and tools published on GitHub.
+            </p>
+          </div>
+        </FadeInSection>
+
+        <div className="space-y-8">
+          {PERSONAL_PROJECTS.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
