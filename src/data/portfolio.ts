@@ -174,9 +174,9 @@ export const PROFESSIONAL_PROJECTS: Project[] = [
       },
     ],
     outcomes: [
-      { metric: '70%', label: 'Reduction in manual triage time' },
-      { metric: '~1.2s', label: 'Average RAG response latency' },
-      { metric: '3x', label: 'Analyst throughput increase' },
+      { metric: 'RAG', label: 'Grounded answers from internal docs' },
+      { metric: 'Async', label: 'FastAPI non-blocking pipeline' },
+      { metric: 'Redis', label: 'Concurrency control & caching' },
     ],
   },
   {
@@ -203,9 +203,9 @@ export const PROFESSIONAL_PROJECTS: Project[] = [
       },
     ],
     outcomes: [
-      { metric: '100k+', label: 'Events/hour with zero loss' },
-      { metric: '<200ms', label: 'Incident ingestion latency' },
-      { metric: '0', label: 'Data loss in production' },
+      { metric: 'Real-time', label: 'High-volume event ingestion' },
+      { metric: 'OAuth2', label: 'Thread-safe token management' },
+      { metric: 'Mirroring', label: 'Bi-directional incident sync' },
     ],
   },
   {
@@ -232,9 +232,9 @@ export const PROFESSIONAL_PROJECTS: Project[] = [
       },
     ],
     outcomes: [
-      { metric: '40%', label: 'Faster developer onboarding' },
+      { metric: 'Standard', label: 'Adopted as internal boilerplate' },
       { metric: 'Modular', label: 'Independent service scaling' },
-      { metric: '12+', label: 'Services built on boilerplate' },
+      { metric: 'DI', label: 'Repository Pattern + Dependency Injection' },
     ],
   },
 ]
