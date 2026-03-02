@@ -245,28 +245,39 @@ export const PERSONAL_PROJECTS: Project[] = [
     icon: '🔧',
     title: 'Forge MCP',
     subtitle: 'AI-Powered Developer Productivity Server',
-    tags: ['Python', 'MCP', 'LLM', 'GitHub Copilot', 'VS Code'],
+    tags: ['Python', 'MCP', 'FastMCP', 'LLM', 'GitHub Copilot', 'VS Code', 'uv'],
     sections: [
       {
-        heading: 'What it does',
+        heading: 'What is it',
         content:
-          'A Model Context Protocol (MCP) server that exposes developer-productivity tools inside VS Code via GitHub Copilot Agent Mode. Includes senior-level PR code review and end-to-end GitHub issue implementation with mandatory approval gates.',
+          'A Model Context Protocol (MCP) server that plugs directly into VS Code via GitHub Copilot Agent Mode. It exposes two core tools — review_pr for senior-level code review and apply_issue for end-to-end GitHub issue implementation — turning your IDE into an autonomous developer assistant.',
       },
       {
-        heading: 'Architecture',
+        heading: 'How it works',
         content:
-          'Prompt-driven design where each tool loads its system prompt from dedicated Markdown files. Integrates with GitHub MCP for issue fetching, uses gh buddy for branch management, and self-reviews code before creating PRs.',
+          'Each tool is prompt-driven: system prompts live in dedicated Markdown files under prompts/, making them easy to customise without touching code. apply_issue fetches issue details via mcp_github_issue_read, creates a branch with gh buddy, proposes an action plan with a mandatory approval gate, implements the solution, self-reviews with review_pr, fixes any findings, and opens a PR automatically.',
       },
       {
-        heading: 'Impact',
+        heading: 'Review capabilities',
         content:
-          'Automates the full developer workflow: read issue → create branch → implement → self-review → open PR. Structured Markdown reviews cover logic, design, security, performance, testing, and readability.',
+          'review_pr produces structured Markdown reviews covering 7 dimensions: logic correctness, software design, security, performance, testing, readability, and integration. Each dimension is rated and includes specific line-level feedback with suggested fixes, making it a true senior-reviewer replacement for solo developers.',
+      },
+      {
+        heading: 'Who is it for',
+        content:
+          'Solo developers and small teams who want faster, higher-quality code without waiting for human reviewers. It is especially useful for personal projects, open-source maintainers, and anyone who wants a consistent review standard applied to every PR they ship.',
+      },
+      {
+        heading: 'Extensibility',
+        content:
+          'Adding a new tool is a 3-step process: create a Markdown system prompt, write a thin Python module following the existing pattern, and register it with the @mcp.tool() decorator in server.py. The architecture is intentionally minimal — no frameworks beyond FastMCP — so the codebase stays small and understandable.',
       },
     ],
     outcomes: [
       { metric: '2', label: 'Core tools (review_pr, apply_issue)' },
       { metric: '7', label: 'Review dimensions covered' },
-      { metric: 'E2E', label: 'Issue-to-PR automation' },
+      { metric: 'E2E', label: 'Issue → branch → implement → review → PR' },
+      { metric: '3 steps', label: 'To add a new tool' },
     ],
     github: 'https://github.com/j4ngx/Forge_MCP',
   },
@@ -274,29 +285,40 @@ export const PERSONAL_PROJECTS: Project[] = [
     id: 'glados-installer',
     icon: '🤖',
     title: 'GLaDOS Installer',
-    subtitle: 'All-in-One Local AI Assistant Stack',
-    tags: ['Bash', 'Docker', 'Ollama', 'Linux', 'Networking', 'Security'],
+    subtitle: 'All-in-One Local AI Assistant Stack for Low-Power Hardware',
+    tags: ['Bash', 'Docker', 'Ollama', 'Linux', 'Networking', 'Security', 'Whisper', 'TTS'],
     sections: [
       {
-        heading: 'What it does',
+        heading: 'What is it',
         content:
-          'A professional, modular installer that sets up a complete local AI assistant environment on Debian-based systems. Orchestrates 17 library modules across 4 installation phases — from system foundations to server hardening.',
+          'A professional, modular Bash installer that deploys a complete local AI assistant environment on Debian-based systems. It orchestrates 17 independent library modules across 4 phases — system foundations (networking, swap, GPU), core services (Ollama, OpenClaw), optional features (voice I/O, web search, Telegram), and server hardening (firewall, SSH, health monitoring).',
       },
       {
-        heading: 'Stack',
+        heading: 'What gets installed',
         content:
-          'Ollama + Meta Llama 3 for LLM runtime, OpenClaw as personal AI assistant, whisper.cpp for offline STT, Piper TTS for speech synthesis, SearXNG for web search, plus static IP, swap, GPU acceleration, UFW firewall, and Telegram bot integration.',
+          'Ollama as the local LLM runtime with Meta Llama 3 by default, OpenClaw as the personal AI assistant with gateway and CLI, whisper.cpp for offline speech-to-text, Piper TTS for text-to-speech with multi-voice support, SearXNG as a self-hosted meta-search engine, plus static IP configuration, swap management, GPU acceleration (NVIDIA Container Toolkit and AMD ROCm), UFW firewall, SSH hardening, unattended security updates, cron-based health monitoring, and optional Telegram bot integration.',
       },
       {
-        heading: 'Engineering',
+        heading: 'Engineering principles',
         content:
-          'Idempotent design safe to re-run. Strict error handling with set -Eeuo pipefail and trap handlers. Pre-flight validation of RAM, disk, CPU, and network. Full logging, backup/restore, and 30+ CLI flags for fine-grained control.',
+          'Every design decision prioritises reliability: idempotent execution safe to re-run any time, strict error handling with set -Eeuo pipefail and ERR/EXIT trap handlers, lock files to prevent concurrent runs, pre-flight validation of RAM/disk/CPU/network before touching anything, and timestamped logging stripped of ANSI codes for clean storage. The installer supports 30+ CLI flags, a --dry-run mode, --non-interactive mode for CI, and a --status command to check health at a glance.',
+      },
+      {
+        heading: 'Who is it for',
+        content:
+          'Anyone who wants to run a private, offline-capable AI assistant on their own hardware — hobbyists with Intel N4000 mini-PCs, developers who want a local LLM stack without cloud dependencies, privacy-conscious users, or homelab enthusiasts who want voice control and web search integrated out of the box. It is optimised for low-power x86_64 and ARM64 machines but works on any compatible Debian system.',
+      },
+      {
+        heading: 'Maintenance & recovery',
+        content:
+          'Built-in backup/restore creates timestamped archives of all configuration (OpenClaw, Ollama models, SearXNG, network, SSH, UFW rules, Piper voices, crontab) and can restore with a single command. The uninstall mode removes all GLaDOS components while preserving Docker and system packages. Health monitoring runs every 5 minutes via cron and alerts through Telegram or syslog.',
       },
     ],
     outcomes: [
       { metric: '17', label: 'Independent library modules' },
-      { metric: '30+', label: 'CLI configuration flags' },
       { metric: '14', label: 'Components orchestrated' },
+      { metric: '30+', label: 'CLI configuration flags' },
+      { metric: '4', label: 'Installation phases' },
     ],
     github: 'https://github.com/j4ngx/GLaDos-Installer',
   },
@@ -304,29 +326,35 @@ export const PERSONAL_PROJECTS: Project[] = [
     id: 'portfolio',
     icon: '🌐',
     title: 'Developer Portfolio',
-    subtitle: 'Modern React + Tailwind CSS v4 SPA',
-    tags: ['React', 'TypeScript', 'Tailwind CSS v4', 'Vite', 'GitHub Pages'],
+    subtitle: 'Modern React + Tailwind CSS v4 Single-Page Application',
+    tags: ['React 19', 'TypeScript', 'Tailwind CSS v4', 'Vite 7', 'GitHub Pages', 'GitHub Actions'],
     sections: [
       {
-        heading: 'What it does',
+        heading: 'What is it',
         content:
-          'A responsive single-page portfolio application showcasing professional experience, projects, tech stack, and certifications. Data-driven architecture with a single source of truth for all content.',
+          'A responsive single-page portfolio application built to showcase professional experience, projects, tech stack, education, and certifications. The entire site is data-driven — all content lives in a single TypeScript file (portfolio.ts), making it trivial to update without touching any component code.',
       },
       {
-        heading: 'Tech choices',
+        heading: 'Tech stack & features',
         content:
-          'Built with Vite 7, React 19, TypeScript, and Tailwind CSS v4. Features smooth scroll navigation, fade-in animations, an interactive terminal component, and a dark professional theme.',
+          'Built with Vite 7 for instant HMR and optimised builds, React 19 with functional components and hooks, TypeScript for type safety across all data structures, and Tailwind CSS v4 with a custom dark professional theme. Features include smooth-scroll navigation, staggered fade-in animations on scroll via IntersectionObserver, and an interactive terminal component that simulates a shell with Easter eggs.',
       },
       {
-        heading: 'Deployment',
+        heading: 'Deployment pipeline',
         content:
-          'Automated CI/CD via GitHub Actions deploying to GitHub Pages on every push to main. Branch protection enforced with required reviews.',
+          'Automated CI/CD via GitHub Actions: every push to main triggers a build with Node 20, runs npm ci for reproducible installs, builds the production bundle, and deploys to GitHub Pages. Branch protection is enforced with required reviews and no force-pushes to main, ensuring the live site always reflects reviewed and approved code.',
+      },
+      {
+        heading: 'Who is it for',
+        content:
+          'Developers looking for a clean, modern portfolio template. The data-driven architecture means you can fork it, replace the content in portfolio.ts with your own data, and have a fully personalised portfolio deployed in minutes — no need to modify React components.',
       },
     ],
     outcomes: [
       { metric: '< 2s', label: 'Initial page load' },
       { metric: '100%', label: 'Responsive on all devices' },
-      { metric: 'Auto', label: 'CI/CD deploy on merge' },
+      { metric: 'Auto', label: 'CI/CD deploy on merge to main' },
+      { metric: '1 file', label: 'To customise all content' },
     ],
     github: 'https://github.com/j4ngx/portfolio',
   },

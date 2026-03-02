@@ -44,7 +44,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div className="p-6 md:p-8">
           <div className={`grid grid-cols-1 ${
             project.sections.length === 2 ? 'md:grid-cols-2' :
-            project.sections.length >= 3 ? 'md:grid-cols-3' : ''
+            project.sections.length === 3 ? 'md:grid-cols-3' :
+            project.sections.length >= 4 ? 'md:grid-cols-2' : ''
           } gap-8`}>
             {project.sections.map((section, i) => (
               <div key={i}>
