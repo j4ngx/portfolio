@@ -149,7 +149,7 @@ export interface Project {
   github?: string
 }
 
-export const PROJECTS: Project[] = [
+export const PROFESSIONAL_PROJECTS: Project[] = [
   {
     id: 'soar-ai',
     icon: '🤖',
@@ -237,6 +237,9 @@ export const PROJECTS: Project[] = [
       { metric: '12+', label: 'Services built on boilerplate' },
     ],
   },
+]
+
+export const PERSONAL_PROJECTS: Project[] = [
   {
     id: 'forge-mcp',
     icon: '🔧',
