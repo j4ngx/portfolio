@@ -199,7 +199,7 @@ export default function GladosDemo() {
   }
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full" role="region" aria-label="GLaDOS interactive terminal demo">
       {/* Suggestion chips */}
       <div className="flex flex-wrap gap-2 mb-3">
         {SUGGESTION_COMMANDS.map((cmd) => (

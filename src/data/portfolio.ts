@@ -12,7 +12,18 @@ export const PERSONAL = {
   github: 'https://github.com/j4ngx',
   linkedin: 'https://linkedin.com/in/joseng2709',
   available: true,
+  cv: '/portfolio/cv.pdf',
+  photo: '/portfolio/photo.webp',
 } as const
+
+/** Rotating phrases for the Hero typing animation */
+export const HERO_ROLES = [
+  'Backend Developer',
+  'Security Engineer',
+  'Tech Lead',
+  'API Architect',
+  'Python Specialist',
+] as const
 
 export const SUMMARY = `Strategic Technical Architect specializing in the convergence of high-performance Python engineering and AI-driven security automation. Expert in architecting idempotent data pipelines bridging complex backend logic with enterprise-grade Security Operations (SecOps). Mastering the API-First paradigm and FastAPI ecosystem to drive interoperability in multinational environments.`
 

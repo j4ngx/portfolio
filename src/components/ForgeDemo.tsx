@@ -650,7 +650,7 @@ export default function ForgeDemo() {
     : editorView
 
   return (
-    <div className="flex flex-col h-full rounded-lg overflow-hidden border border-[#333]">
+    <div className="flex flex-col h-full rounded-lg overflow-hidden border border-[#333]" role="region" aria-label="Forge MCP VS Code demo">
       {/* ── Title bar ── */}
       <div className="bg-[#1f1f1f] flex items-center justify-between px-3 py-1.5 border-b border-[#333] shrink-0">
         <div className="flex items-center gap-2">
