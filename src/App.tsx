@@ -15,7 +15,7 @@ import ScrollToTop from './components/ScrollToTop'
 import ErrorBoundary from './components/ErrorBoundary'
 import AskMe from './components/AskMe'
 import { useTheme } from './hooks/useTheme'
-import { LocaleProvider } from './hooks/useLocale'
+import { LocaleProvider, useLocale } from './hooks/useLocale'
 
 /* Lazy-load heavy demo components */
 const GladosDemo = lazy(() => import('./components/GladosDemo'))
@@ -23,11 +23,17 @@ const EvoFitDemo = lazy(() => import('./components/EvoFitDemo'))
 const ForgeDemo = lazy(() => import('./components/ForgeDemo'))
 
 function DemoFallback() {
+  const { t } = useLocale()
   return (
     <div className="w-full py-12 flex items-center justify-center">
-      <span className="text-muted text-sm font-mono animate-pulse">Loading demo…</span>
+      <span className="text-muted text-sm font-mono animate-pulse">{t('app.loading')}</span>
     </div>
   )
+}
+
+function SkipToContent() {
+  const { t } = useLocale()
+  return <>{t('app.skipToContent')}</>
 }
 
 export default function App() {
@@ -41,7 +47,7 @@ export default function App() {
         href="#summary"
         className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[999] focus:bg-solid focus:text-on-solid focus:px-4 focus:py-2 focus:rounded focus:text-sm"
       >
-        Skip to content
+        <SkipToContent />
       </a>
 
       {/* Grid background */}

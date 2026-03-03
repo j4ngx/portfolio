@@ -1,6 +1,8 @@
 import { PERSONAL } from '../data/portfolio'
+import { useLocale } from '../hooks/useLocale'
 
 export default function Footer() {
+  const { t } = useLocale()
   const year = new Date().getFullYear()
 
   return (
@@ -31,7 +33,7 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="text-on-solid/30">Built with React + TypeScript + Tailwind</div>
+        <div className="text-on-solid/30">{t('footer.built')}</div>
       </div>
     </footer>
   )

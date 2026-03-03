@@ -3,6 +3,7 @@ import { PERSONAL } from '../data/portfolio'
 import Icon from './Icon'
 import ThemeToggle from './ThemeToggle'
 import { useLocale } from '../hooks/useLocale'
+import type { TranslationKey } from '../data/i18n'
 
 const NAV_LINKS = [
   { href: '#summary', id: 'summary', label: 'summary' },
@@ -24,7 +25,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('summary')
-  const { locale, toggleLocale } = useLocale()
+  const { locale, toggleLocale, t } = useLocale()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -89,7 +90,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                 }`}
                 aria-current={activeSection === link.id ? 'page' : undefined}
               >
-                {link.label}
+                {t(`nav.${link.label}` as TranslationKey)}
               </a>
             ))}
           </div>
@@ -114,12 +115,12 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               className="inline-flex items-center px-2 py-1 rounded border border-border text-[11px] text-muted hover:text-primary hover:border-primary/40 transition-colors font-mono font-medium"
               aria-label={`Switch to ${locale === 'en' ? 'Spanish' : 'English'}`}
             >
-              {locale === 'en' ? 'ES' : 'EN'}
+              {locale === 'en' ? 'EN' : 'ES'}
             </button>
 
             {PERSONAL.available && (
               <span className="hidden 2xl:inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800 font-mono">
-                AVAILABLE
+                {t('nav.available')}
               </span>
             )}
 
@@ -127,7 +128,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               href={`mailto:${PERSONAL.email}`}
               className="hidden sm:inline-flex bg-solid hover:bg-solid-hover text-on-solid px-3 py-1.5 rounded text-xs font-medium transition-colors"
             >
-              Contact
+              {t('nav.contact')}
             </a>
 
             {/* Mobile hamburger */}
@@ -153,14 +154,14 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                   activeSection === link.id ? 'text-accent font-semibold' : 'text-muted hover:text-primary'
                 }`}
               >
-                {link.label}
+                {t(`nav.${link.label}` as TranslationKey)}
               </a>
             ))}
             <a
               href={`mailto:${PERSONAL.email}`}
               className="block bg-solid hover:bg-solid-hover text-on-solid px-4 py-2 rounded text-sm font-medium text-center"
             >
-              Contact
+              {t('nav.contact')}
             </a>
           </div>
         )}

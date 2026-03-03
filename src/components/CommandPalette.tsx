@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { PERSONAL, PERSONAL_PROJECTS, PROFESSIONAL_PROJECTS } from '../data/portfolio'
+import { PERSONAL, PERSONAL_PROJECTS, PROFESSIONAL_PROJECTS, loc } from '../data/portfolio'
+import { useLocale } from '../hooks/useLocale'
+import type { TranslationKey } from '../data/i18n'
 
 interface PaletteItem {
   id: string
@@ -9,27 +11,27 @@ interface PaletteItem {
   action: () => void
 }
 
-function buildItems(close: () => void, toggleTheme?: () => void): PaletteItem[] {
+function buildItems(close: () => void, toggleTheme: (() => void) | undefined, t: (key: TranslationKey) => string, locale: 'en' | 'es'): PaletteItem[] {
   const go = (hash: string) => () => {
     document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' })
     close()
   }
 
   const sections: PaletteItem[] = [
-    { id: 's-summary', label: './summary', subtitle: 'Hero section', icon: 'home', action: go('summary') },
-    { id: 's-experience', label: './timeline', subtitle: 'Professional experience', icon: 'work', action: go('experience') },
-    { id: 's-stack', label: './stack', subtitle: 'Technical ecosystem', icon: 'code', action: go('stack') },
-    { id: 's-projects', label: './projects', subtitle: 'Professional & open-source', icon: 'folder', action: go('projects') },
-    { id: 's-playground', label: './playground', subtitle: 'Interactive demos', icon: 'sports_esports', action: go('playground') },
-    { id: 's-github', label: './github', subtitle: 'GitHub activity & stats', icon: 'monitoring', action: go('github') },
-    { id: 's-education', label: './academic', subtitle: 'Education & certifications', icon: 'school', action: go('education') },
-    { id: 's-contact', label: './contact', subtitle: 'Get in touch', icon: 'mail', action: go('contact') },
+    { id: 's-summary', label: './summary', subtitle: t('cmd.summary'), icon: 'home', action: go('summary') },
+    { id: 's-experience', label: './timeline', subtitle: t('cmd.experience'), icon: 'work', action: go('experience') },
+    { id: 's-stack', label: './stack', subtitle: t('cmd.stack'), icon: 'code', action: go('stack') },
+    { id: 's-projects', label: './projects', subtitle: t('cmd.projects'), icon: 'folder', action: go('projects') },
+    { id: 's-playground', label: './playground', subtitle: t('cmd.playground'), icon: 'sports_esports', action: go('playground') },
+    { id: 's-github', label: './github', subtitle: t('cmd.github'), icon: 'monitoring', action: go('github') },
+    { id: 's-education', label: './academic', subtitle: t('cmd.education'), icon: 'school', action: go('education') },
+    { id: 's-contact', label: './contact', subtitle: t('cmd.contact'), icon: 'mail', action: go('contact') },
   ]
 
   const projects: PaletteItem[] = [...PROFESSIONAL_PROJECTS, ...PERSONAL_PROJECTS].map((p) => ({
     id: `p-${p.id}`,
     label: p.title,
-    subtitle: p.subtitle,
+    subtitle: loc(p.subtitle, locale),
     icon: 'terminal',
     action: () => {
       if (p.playground) {
@@ -45,21 +47,21 @@ function buildItems(close: () => void, toggleTheme?: () => void): PaletteItem[] 
   const actions: PaletteItem[] = [
     {
       id: 'a-cv',
-      label: 'Download CV',
-      subtitle: 'PDF resume',
+      label: t('cmd.downloadCv'),
+      subtitle: t('cmd.downloadCvSub'),
       icon: 'download',
       action: () => { window.open(PERSONAL.cv, '_blank'); close() },
     },
     {
       id: 'a-github',
-      label: 'GitHub Profile',
+      label: t('cmd.githubProfile'),
       subtitle: PERSONAL.github,
       icon: 'link',
       action: () => { window.open(PERSONAL.github, '_blank'); close() },
     },
     {
       id: 'a-linkedin',
-      label: 'LinkedIn Profile',
+      label: t('cmd.linkedinProfile'),
       subtitle: PERSONAL.linkedin,
       icon: 'link',
       action: () => { window.open(PERSONAL.linkedin, '_blank'); close() },
@@ -69,8 +71,8 @@ function buildItems(close: () => void, toggleTheme?: () => void): PaletteItem[] 
   if (toggleTheme) {
     actions.push({
       id: 'a-theme',
-      label: 'Toggle Theme',
-      subtitle: 'Switch dark / light mode',
+      label: t('cmd.toggleTheme'),
+      subtitle: t('cmd.toggleThemeSub'),
       icon: 'dark_mode',
       action: () => { toggleTheme(); close() },
     })
@@ -106,7 +108,8 @@ export default function CommandPalette({ toggleTheme }: Props) {
     setSelectedIdx(0)
   }, [])
 
-  const items = buildItems(close, toggleTheme)
+  const { t, locale } = useLocale()
+  const items = buildItems(close, toggleTheme, t, locale)
   const filtered = query
     ? items.filter((i) => fuzzyMatch(i.label, query) || fuzzyMatch(i.subtitle ?? '', query))
     : items
@@ -179,7 +182,7 @@ export default function CommandPalette({ toggleTheme }: Props) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Type a command or search…"
+            placeholder={t('cmd.placeholder')}
             className="flex-1 bg-transparent text-primary text-sm font-mono outline-none placeholder:text-muted"
           />
           <kbd className="hidden sm:inline-flex text-[10px] font-mono text-muted px-1.5 py-0.5 rounded border border-border bg-bg">
@@ -191,7 +194,7 @@ export default function CommandPalette({ toggleTheme }: Props) {
         <div ref={listRef} className="max-h-72 overflow-y-auto py-2">
           {filtered.length === 0 && (
             <div className="px-4 py-6 text-center text-muted text-sm font-mono">
-              No results for "{query}"
+              {t('cmd.noResults').replace('{query}', query)}
             </div>
           )}
           {filtered.map((item, idx) => (
@@ -217,9 +220,9 @@ export default function CommandPalette({ toggleTheme }: Props) {
 
         {/* Footer hint */}
         <div className="flex items-center justify-between px-4 py-2 border-t border-border text-[10px] text-muted font-mono">
-          <span>↑↓ navigate</span>
-          <span>↵ select</span>
-          <span>esc close</span>
+          <span>{t('cmd.navigate')}</span>
+          <span>{t('cmd.select')}</span>
+          <span>{t('cmd.close')}</span>
         </div>
       </div>
     </div>

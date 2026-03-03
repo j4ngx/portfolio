@@ -1,10 +1,13 @@
-import { PERSONAL, HERO_DESCRIPTION, HERO_ROLES } from '../data/portfolio'
+import { PERSONAL, HERO_ROLES, loc } from '../data/portfolio'
 import Icon from './Icon'
 import Terminal from './Terminal'
 import TypeWriter from './TypeWriter'
 import FadeInSection from './FadeInSection'
+import { useLocale } from '../hooks/useLocale'
 
 export default function Hero() {
+  const { t, locale } = useLocale()
+
   return (
     <section
       id="summary"
@@ -27,7 +30,7 @@ export default function Hero() {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-surface border border-border text-xs font-mono text-primary font-semibold">
                   <Icon icon="security" />
-                  BACKEND PYTHON DEVELOPER & TECH LEAD
+                  {t('hero.badge')}
                 </div>
               </div>
             </div>
@@ -40,7 +43,7 @@ export default function Hero() {
               <span className="text-accent">{PERSONAL.lastNameHighlight}</span>
             </h1>
             <div className="text-xl md:text-2xl font-mono text-muted mt-4 h-8">
-              <TypeWriter phrases={HERO_ROLES} />
+              <TypeWriter phrases={HERO_ROLES.map(r => loc(r, locale))} />
             </div>
           </FadeInSection>
 
@@ -77,7 +80,7 @@ export default function Hero() {
 
           <FadeInSection delay={300}>
             <p className="text-lg text-subtle max-w-lg leading-relaxed border-l-4 border-accent pl-6">
-              {HERO_DESCRIPTION}
+              {t('hero.description')}
             </p>
           </FadeInSection>
 
@@ -90,7 +93,7 @@ export default function Hero() {
                 <span className="material-symbols-outlined group-hover:scale-110 transition-transform">
                   description
                 </span>
-                View Experience
+                {t('hero.viewExperience')}
               </a>
               <a
                 href={PERSONAL.cv}
@@ -101,13 +104,13 @@ export default function Hero() {
                 <span className="material-symbols-outlined group-hover:scale-110 transition-transform">
                   download
                 </span>
-                Download CV
+                {t('hero.downloadCv')}
               </a>
               <a
                 href="#projects"
                 className="group flex items-center gap-3 bg-transparent text-muted hover:text-primary px-6 py-3 rounded font-medium transition-all"
               >
-                View Projects
+                {t('hero.viewProjects')}
                 <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
                   arrow_forward
                 </span>

@@ -1,5 +1,6 @@
-import { SKILL_GROUPS } from '../data/portfolio'
+import { SKILL_GROUPS, loc } from '../data/portfolio'
 import FadeInSection from './FadeInSection'
+import { useLocale } from '../hooks/useLocale'
 
 /**
  * Pure-SVG radar (spider) chart rendering skill group coverage.
@@ -13,13 +14,14 @@ const RADIUS = 120
 const LEVELS = 4
 
 /** Map skill groups into radar axes using average proficiency */
-function useRadarData() {
+function useRadarData(locale: 'en' | 'es') {
   const data = SKILL_GROUPS.map((g, i) => {
     const avgProf = g.skills.reduce((sum, s) => sum + s.proficiency, 0) / g.skills.length / 100
     const angle = (Math.PI * 2 * i) / SKILL_GROUPS.length - Math.PI / 2
+    const title = loc(g.title, locale)
     return {
-      label: g.title.split('&')[0].trim(),
-      fullLabel: g.title,
+      label: title.split('&')[0].trim(),
+      fullLabel: title,
       value: avgProf,
       proficiency: Math.round(avgProf * 100),
       count: g.skills.length,
@@ -80,7 +82,8 @@ function RadarGrid() {
 }
 
 export default function SkillRadar() {
-  const data = useRadarData()
+  const { t, locale } = useLocale()
+  const data = useRadarData(locale)
   const polygonPoints = data.map((d) => `${d.x},${d.y}`).join(' ')
 
   return (
@@ -90,10 +93,10 @@ export default function SkillRadar() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-12">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-primary">
-                Skill Coverage
+                {t('skills.title')}
               </h2>
               <p className="text-subtle mt-2">
-                Competency distribution across technical domains.
+                {t('skills.subtitle')}
               </p>
             </div>
 
@@ -159,7 +162,7 @@ export default function SkillRadar() {
                       {d.fullLabel}
                     </p>
                     <p className="text-xs text-muted font-mono">
-                      {d.count} skills · {d.proficiency}% avg
+                      {t('skills.legend').replace('{count}', String(d.count)).replace('{pct}', String(d.proficiency))}
                     </p>
                   </div>
                 </div>

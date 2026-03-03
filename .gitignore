@@ -27,3 +27,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+_merge_pr.py
+_gen_files_json.cjs
+_repo_files.json

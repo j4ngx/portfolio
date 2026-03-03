@@ -1,8 +1,10 @@
-import { EXPERIENCES, type Experience } from '../data/portfolio'
+import { EXPERIENCES, loc, type Experience } from '../data/portfolio'
 import FadeInSection from './FadeInSection'
+import { useLocale } from '../hooks/useLocale'
 
 function TimelineItem({ exp, index }: { exp: Experience; index: number }) {
   const isEven = index % 2 === 0
+  const { t, locale } = useLocale()
 
   return (
     <div className="relative flex flex-col md:flex-row items-center justify-between mb-20 group">
@@ -13,7 +15,7 @@ function TimelineItem({ exp, index }: { exp: Experience; index: number }) {
         }`}
       >
         <FadeInSection delay={index * 100}>
-          <h3 className="text-xl font-bold text-primary">{exp.title}</h3>
+          <h3 className="text-xl font-bold text-primary">{loc(exp.title, locale)}</h3>
           <div className="text-accent font-mono text-sm mb-1">
             {exp.company} – {exp.location}
           </div>
@@ -24,7 +26,7 @@ function TimelineItem({ exp, index }: { exp: Experience; index: number }) {
             }`}
           >
             {exp.bullets.map((bullet, i) => (
-              <li key={i}>• {bullet}</li>
+              <li key={i}>• {loc(bullet, locale)}</li>
             ))}
           </ul>
         </FadeInSection>
@@ -45,7 +47,7 @@ function TimelineItem({ exp, index }: { exp: Experience; index: number }) {
       >
         <FadeInSection delay={index * 100 + 50}>
           <div className="bg-bg p-4 rounded border border-border text-xs font-mono text-muted">
-            Tech stack: {exp.techStack}
+            {t('experience.techStack')} {exp.techStack}
           </div>
         </FadeInSection>
       </div>
@@ -54,16 +56,18 @@ function TimelineItem({ exp, index }: { exp: Experience; index: number }) {
 }
 
 export default function ExperienceTimeline() {
+  const { t } = useLocale()
+
   return (
     <section id="experience" className="py-24 bg-surface relative">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <FadeInSection>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Professional Experience
+              {t('experience.title')}
             </h2>
             <p className="text-subtle max-w-2xl mx-auto">
-              Career path focused on high-stakes cybersecurity and automation engineering.
+              {t('experience.subtitle')}
             </p>
           </div>
         </FadeInSection>

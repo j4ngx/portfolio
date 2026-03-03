@@ -1,4 +1,22 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react'
+import { useLocale } from '../hooks/useLocale'
+
+function DefaultErrorFallback({ onReset }: { readonly onReset: () => void }) {
+  const { t } = useLocale()
+  return (
+    <div className="w-full py-12 text-center">
+      <p className="text-muted text-sm font-mono">
+        {t('error.message')}
+      </p>
+      <button
+        onClick={onReset}
+        className="mt-3 text-xs text-primary hover:text-accent underline font-mono"
+      >
+        {t('error.retry')}
+      </button>
+    </div>
+  )
+}
 
 interface Props {
   readonly children: ReactNode
@@ -24,17 +42,7 @@ export default class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         this.props.fallback ?? (
-          <div className="w-full py-12 text-center">
-            <p className="text-muted text-sm font-mono">
-              Something went wrong loading this section.
-            </p>
-            <button
-              onClick={() => this.setState({ hasError: false })}
-              className="mt-3 text-xs text-primary hover:text-accent underline font-mono"
-            >
-              Try again
-            </button>
-          </div>
+          <DefaultErrorFallback onReset={() => this.setState({ hasError: false })} />
         )
       )
     }

@@ -1,11 +1,13 @@
 import { useEffect, useState, type ComponentType } from 'react'
 import FadeInSection from './FadeInSection'
+import { useLocale } from '../hooks/useLocale'
+import type { TranslationKey } from '../data/i18n'
 
 interface Tab {
   id: string
   icon: string
   label: string
-  desc: string
+  descKey: TranslationKey
 }
 
 const TABS: Tab[] = [
@@ -13,19 +15,19 @@ const TABS: Tab[] = [
     id: 'forge',
     icon: '🔧',
     label: 'Forge MCP',
-    desc: 'VS Code + Copilot Agent Mode — try review_pr, apply_issue and scaffold_project',
+    descKey: 'playground.forgeDesc',
   },
   {
     id: 'glados',
     icon: '🤖',
     label: 'GLaDOS Installer',
-    desc: 'Interactive terminal — run commands against a simulated GLaDOS environment',
+    descKey: 'playground.gladosDesc',
   },
   {
     id: 'evofit',
     icon: '🏋️',
     label: 'EvoFit',
-    desc: 'Mobile training app — tap Start Session to try the live workout tracker',
+    descKey: 'playground.evofitDesc',
   },
 ]
 
@@ -37,7 +39,8 @@ interface PlaygroundProps {
 
 export default function Playground({ GladosDemo, EvoFitDemo, ForgeDemo }: PlaygroundProps) {
   const [activeTab, setActiveTab] = useState('forge')
-  const currentTab = TABS.find((t) => t.id === activeTab)
+  const { t } = useLocale()
+  const currentTab = TABS.find((tab) => tab.id === activeTab)
   const isEvofit = activeTab === 'evofit'
 
   useEffect(() => {
@@ -56,15 +59,14 @@ export default function Playground({ GladosDemo, EvoFitDemo, ForgeDemo }: Playgr
           <span className="text-xs font-mono text-muted">04</span>
           <span className="w-12 h-px bg-muted" />
           <span className="text-xs font-mono text-muted tracking-widest uppercase">
-            Playground
+            {t('playground.label')}
           </span>
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-primary mt-2 mb-3">
-          Try My Projects
+          {t('playground.title')}
         </h2>
         <p className="text-muted max-w-2xl mb-10">
-          Interactive demos running directly in your browser. Pick a project and start exploring —
-          no installs required.
+          {t('playground.subtitle')}
         </p>
       </FadeInSection>
 
@@ -96,7 +98,7 @@ export default function Playground({ GladosDemo, EvoFitDemo, ForgeDemo }: Playgr
         {/* Description */}
         <p className={`text-xs font-mono mb-4 pl-1 transition-colors ${
           isEvofit ? 'text-gray-600' : 'text-muted'
-        }`}>{currentTab?.desc}</p>
+        }`}>{currentTab ? t(currentTab.descKey) : ''}</p>
 
         {/* Demo panel */}
         <div className={`rounded-xl border p-4 md:p-6 h-[520px] md:h-[560px] transition-colors ${

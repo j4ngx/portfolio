@@ -1,8 +1,11 @@
-import { EDUCATION, CERTIFICATIONS } from '../data/portfolio'
+import { EDUCATION, CERTIFICATIONS, loc } from '../data/portfolio'
 import Icon from './Icon'
 import FadeInSection from './FadeInSection'
+import { useLocale } from '../hooks/useLocale'
 
 export default function EducationCerts() {
+  const { t, locale } = useLocale()
+
   return (
     <section id="education" className="py-24 bg-bg border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,15 +17,15 @@ export default function EducationCerts() {
                 <span className="text-primary">
                   <Icon icon="school" />
                 </span>{' '}
-                EDUCATION
+                {t('education.education')}
               </h2>
             </FadeInSection>
 
             <div className="space-y-6">
               {EDUCATION.map((edu, i) => (
-                <FadeInSection key={edu.title} delay={i * 100}>
+                <FadeInSection key={edu.title.en} delay={i * 100}>
                   <div className="bg-surface p-6 rounded border border-border">
-                    <h3 className="font-bold text-primary">{edu.title}</h3>
+                    <h3 className="font-bold text-primary">{loc(edu.title, locale)}</h3>
                     <div className="text-accent text-sm font-mono">{edu.institution}</div>
                     <div className="text-muted text-xs mt-1">{edu.period}</div>
                   </div>
@@ -38,7 +41,7 @@ export default function EducationCerts() {
                 <span className="text-accent">
                   <Icon icon="verified" />
                 </span>{' '}
-                CERTIFICATIONS
+                {t('education.certifications')}
               </h2>
             </FadeInSection>
 
