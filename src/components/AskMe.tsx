@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, type FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Icon from './Icon'
 import {
   PERSONAL,
   EXPERIENCES,
@@ -169,9 +170,7 @@ export default function AskMe() {
         whileTap={{ scale: 0.95 }}
         aria-label={t('chatbot.title')}
       >
-        <span className="material-symbols-outlined text-2xl">
-          {isOpen ? 'close' : 'smart_toy'}
-        </span>
+        <Icon icon={isOpen ? 'close' : 'smart_toy'} className="text-2xl" />
       </motion.button>
 
       {/* Chat panel */}
@@ -187,7 +186,7 @@ export default function AskMe() {
           >
             {/* Header */}
             <div className="flex items-center gap-3 px-4 py-3 border-b border-border bg-bg">
-              <span className="material-symbols-outlined text-primary">smart_toy</span>
+              <Icon icon="smart_toy" className="text-primary" />
               <div className="flex-1">
                 <p className="text-sm font-bold text-primary font-mono">
                   {t('chatbot.title')}
@@ -199,12 +198,12 @@ export default function AskMe() {
                 className="text-muted hover:text-primary transition-colors"
                 aria-label="Close chat"
               >
-                <span className="material-symbols-outlined text-lg">close</span>
+                <Icon icon="close" className="text-lg" />
               </button>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3" aria-live="polite" aria-relevant="additions">
               {messages.map((msg, i) => (
                 <div
                   key={i}
@@ -263,7 +262,7 @@ export default function AskMe() {
                 className="bg-solid hover:bg-solid-hover text-on-solid rounded-lg p-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Send message"
               >
-                <span className="material-symbols-outlined text-lg">send</span>
+                <Icon icon="send" className="text-lg" />
               </button>
             </form>
           </motion.div>

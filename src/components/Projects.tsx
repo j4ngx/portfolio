@@ -1,5 +1,6 @@
 import { PROFESSIONAL_PROJECTS, PERSONAL_PROJECTS, type Project } from '../data/portfolio'
 import FadeInSection from './FadeInSection'
+import { useLocale } from '../hooks/useLocale'
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const handlePlayground = (tabId: string) => {
@@ -97,15 +98,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function Projects() {
+  const { t } = useLocale()
+
   return (
     <section id="projects" className="py-24 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Professional Projects */}
         <FadeInSection>
           <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">Professional Projects</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">{t('projects.proTitle')}</h2>
             <p className="text-subtle mt-2">
-              Selected architectural challenges and outcomes from enterprise environments.
+              {t('projects.proSubtitle')}
             </p>
           </div>
         </FadeInSection>
@@ -119,9 +122,9 @@ export default function Projects() {
         {/* Personal / Open-Source Projects */}
         <FadeInSection>
           <div className="mt-20 mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">Open-Source Projects</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">{t('projects.ossTitle')}</h2>
             <p className="text-subtle mt-2">
-              Personal projects and tools published on GitHub.
+              {t('projects.ossSubtitle')}
             </p>
           </div>
         </FadeInSection>

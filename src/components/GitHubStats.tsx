@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import FadeInSection from './FadeInSection'
 import { PERSONAL } from '../data/portfolio'
+import { useLocale } from '../hooks/useLocale'
 
 interface GitHubData {
   publicRepos: number
@@ -115,6 +116,7 @@ function StatCard({ label, value }: Readonly<{ label: string; value: string | nu
 export default function GitHubStats() {
   const [data, setData] = useState<GitHubData | null>(null)
   const [error, setError] = useState(false)
+  const { t } = useLocale()
 
   useEffect(() => {
     const cached = getCached()
@@ -141,7 +143,7 @@ export default function GitHubStats() {
       <section className="py-24 bg-bg border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-muted text-sm font-mono">
-            GitHub stats temporarily unavailable — rate limited.
+            {t('github.rateLimited')}
           </p>
         </div>
       </section>
@@ -155,10 +157,10 @@ export default function GitHubStats() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-12">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-primary">
-                GitHub Activity
+                {t('github.title')}
               </h2>
               <p className="text-subtle mt-2">
-                Live stats from my open-source contributions.
+                {t('github.subtitle')}
               </p>
             </div>
             <a

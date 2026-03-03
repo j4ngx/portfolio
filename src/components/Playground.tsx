@@ -1,4 +1,4 @@
-import { useEffect, useState, type ComponentType } from 'react'
+import { useEffect, useState, useCallback, type ComponentType } from 'react'
 import FadeInSection from './FadeInSection'
 
 interface Tab {
@@ -40,6 +40,20 @@ export default function Playground({ GladosDemo, EvoFitDemo, ForgeDemo }: Playgr
   const currentTab = TABS.find((t) => t.id === activeTab)
   const isEvofit = activeTab === 'evofit'
 
+  const handleTabKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      const idx = TABS.findIndex((t) => t.id === activeTab)
+      if (e.key === 'ArrowRight') {
+        e.preventDefault()
+        setActiveTab(TABS[(idx + 1) % TABS.length].id)
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        setActiveTab(TABS[(idx - 1 + TABS.length) % TABS.length].id)
+      }
+    },
+    [activeTab],
+  )
+
   useEffect(() => {
     const handler = (e: Event) => {
       const tabId = (e as CustomEvent<string>).detail
@@ -70,12 +84,22 @@ export default function Playground({ GladosDemo, EvoFitDemo, ForgeDemo }: Playgr
 
       <FadeInSection delay={120}>
         {/* Tab bar */}
-        <div className={`flex gap-2 mb-4 overflow-x-auto pb-1 px-1 py-1 rounded-xl transition-colors ${
-          isEvofit ? 'bg-[#161618]' : ''
-        }`}>
+        <div
+          className={`flex gap-2 mb-4 overflow-x-auto pb-1 px-1 py-1 rounded-xl transition-colors ${
+            isEvofit ? 'bg-[#161618]' : ''
+          }`}
+          role="tablist"
+          aria-label="Project demos"
+          onKeyDown={handleTabKeyDown}
+        >
           {TABS.map((tab) => (
             <button
               key={tab.id}
+              role="tab"
+              aria-selected={activeTab === tab.id}
+              aria-controls={`panel-${tab.id}`}
+              id={`tab-${tab.id}`}
+              tabIndex={activeTab === tab.id ? 0 : -1}
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-mono whitespace-nowrap transition-all border ${
                 isEvofit
@@ -99,11 +123,16 @@ export default function Playground({ GladosDemo, EvoFitDemo, ForgeDemo }: Playgr
         }`}>{currentTab?.desc}</p>
 
         {/* Demo panel */}
-        <div className={`rounded-xl border p-4 md:p-6 h-[520px] md:h-[560px] transition-colors ${
-          isEvofit
-            ? 'bg-[#0c0c0e] border-white/5 shadow-[0_0_40px_rgba(15,240,105,0.04)]'
-            : 'bg-surface border-border'
-        }`}>
+        <div
+          role="tabpanel"
+          id={`panel-${activeTab}`}
+          aria-labelledby={`tab-${activeTab}`}
+          className={`rounded-xl border p-4 md:p-6 h-[520px] md:h-[560px] transition-colors ${
+            isEvofit
+              ? 'bg-[#0c0c0e] border-white/5 shadow-[0_0_40px_rgba(15,240,105,0.04)]'
+              : 'bg-surface border-border'
+          }`}
+        >
           {activeTab === 'glados' && <GladosDemo />}
           {activeTab === 'forge' && <ForgeDemo />}
           {activeTab === 'evofit' && <EvoFitDemo />}

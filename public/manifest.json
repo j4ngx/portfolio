@@ -1,0 +1,17 @@
+{
+  "name": "José Ángel Fernández – Portfolio",
+  "short_name": "JAFG Portfolio",
+  "description": "Backend Python Developer & Tech Lead – Personal portfolio",
+  "start_url": "/portfolio/",
+  "scope": "/portfolio/",
+  "display": "standalone",
+  "background_color": "#0a0a0c",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "/portfolio/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}

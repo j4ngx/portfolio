@@ -27,6 +27,8 @@ export const HERO_ROLES = [
 
 export const HERO_DESCRIPTION = `Backend Python Developer with strong experience building APIs and backend services (mainly FastAPI and Django/Flask) in security-focused environments for multinational companies. Specialized in integrating security platforms and automating incident response.`
 
+export const ABOUT_ME = `When I'm not writing Python or reviewing pull requests, you'll find me weightlifting at the gym, experimenting with self-hosted AI on low-power hardware, or exploring the mountains around Granada. I'm driven by the intersection of clean architecture and real-world security — turning complex incident-response problems into elegant, automated solutions.`
+
 export interface Experience {
   id: string
   title: string
