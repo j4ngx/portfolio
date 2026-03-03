@@ -78,7 +78,7 @@ export default function Hero() {
             <div className="flex flex-wrap gap-4 pt-4">
               <a
                 href="#experience"
-                className="group flex items-center gap-3 bg-primary hover:bg-accent text-white px-6 py-3 rounded font-medium transition-all shadow-sm"
+                className="group flex items-center gap-3 bg-solid hover:bg-solid-hover text-on-solid px-6 py-3 rounded font-medium transition-all shadow-sm"
               >
                 <span className="material-symbols-outlined group-hover:scale-110 transition-transform">
                   description

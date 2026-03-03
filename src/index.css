@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-primary: #1a1a1a;
   --color-accent: #3a3a3a;
@@ -9,8 +11,26 @@
   --color-muted: #999999;
   --color-subtle: #555555;
   --color-border: #E0E0DC;
+  --color-solid: #1a1a1a;
+  --color-on-solid: #ffffff;
+  --color-solid-hover: #3a3a3a;
   --font-display: "Inter", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
+}
+
+/* ─── Dark mode overrides ─── */
+.dark {
+  --color-primary: #e5e5e5;
+  --color-accent: #a0a0a0;
+  --color-bg: #0d1117;
+  --color-surface: #161b22;
+  --color-card: #1c2128;
+  --color-muted: #6b7280;
+  --color-subtle: #c9d1d9;
+  --color-border: #30363d;
+  --color-solid: #21262d;
+  --color-on-solid: #e5e5e5;
+  --color-solid-hover: #30363d;
 }
 
 body {
@@ -23,7 +43,7 @@ body {
 
 ::selection {
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-bg);
 }
 
 .bg-grid {
@@ -32,10 +52,19 @@ body {
   background-size: 40px 40px;
 }
 
+.dark .bg-grid {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
 .glass-panel {
   background: rgba(245, 245, 240, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+.dark .glass-panel {
+  background: rgba(13, 17, 23, 0.9);
 }
 
 .terminal-scroll::-webkit-scrollbar {

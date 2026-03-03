@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { PERSONAL } from '../data/portfolio'
 import Icon from './Icon'
+import ThemeToggle from './ThemeToggle'
 
 const NAV_LINKS = [
   { href: '#summary', label: './summary' },
@@ -10,7 +11,12 @@ const NAV_LINKS = [
   { href: '#education', label: './academic' },
 ]
 
-export default function Navbar() {
+interface NavbarProps {
+  readonly theme: 'light' | 'dark'
+  readonly toggleTheme: () => void
+}
+
+export default function Navbar({ theme, toggleTheme }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -52,14 +58,15 @@ export default function Navbar() {
 
           {/* Right section */}
           <div className="flex items-center gap-4">
+            <ThemeToggle theme={theme} toggle={toggleTheme} />
             {PERSONAL.available && (
-              <span className="hidden md:inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-green-50 text-green-700 border border-green-200 font-mono">
+              <span className="hidden md:inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800 font-mono">
                 STATUS: AVAILABLE
               </span>
             )}
             <a
               href={`mailto:${PERSONAL.email}`}
-              className="hidden sm:inline-flex bg-primary hover:bg-accent text-white px-4 py-2 rounded text-sm font-medium transition-colors"
+              className="hidden sm:inline-flex bg-solid hover:bg-solid-hover text-on-solid px-4 py-2 rounded text-sm font-medium transition-colors"
             >
               Contact
             </a>
@@ -90,7 +97,7 @@ export default function Navbar() {
             ))}
             <a
               href={`mailto:${PERSONAL.email}`}
-              className="block bg-primary hover:bg-accent text-white px-4 py-2 rounded text-sm font-medium text-center"
+              className="block bg-solid hover:bg-solid-hover text-on-solid px-4 py-2 rounded text-sm font-medium text-center"
             >
               Contact
             </a>
