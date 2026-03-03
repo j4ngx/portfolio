@@ -7,14 +7,15 @@ import SkillRadar from './components/SkillRadar'
 import Projects from './components/Projects'
 import Playground from './components/Playground'
 import GitHubStats from './components/GitHubStats'
-import Blog from './components/Blog'
 import EducationCerts from './components/EducationCerts'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import CommandPalette from './components/CommandPalette'
 import ScrollToTop from './components/ScrollToTop'
 import ErrorBoundary from './components/ErrorBoundary'
+import AskMe from './components/AskMe'
 import { useTheme } from './hooks/useTheme'
+import { LocaleProvider } from './hooks/useLocale'
 
 /* Lazy-load heavy demo components */
 const GladosDemo = lazy(() => import('./components/GladosDemo'))
@@ -33,7 +34,16 @@ export default function App() {
   const { theme, toggle } = useTheme()
 
   return (
+    <LocaleProvider>
     <div className="text-subtle font-[var(--font-display)] bg-bg">
+      {/* Skip to content (accessibility) */}
+      <a
+        href="#summary"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[999] focus:bg-solid focus:text-on-solid focus:px-4 focus:py-2 focus:rounded focus:text-sm"
+      >
+        Skip to content
+      </a>
+
       {/* Grid background */}
       <div className="fixed inset-0 pointer-events-none z-0 bg-grid opacity-40" />
 
@@ -57,12 +67,13 @@ export default function App() {
           </Suspense>
         </ErrorBoundary>
         <GitHubStats />
-        <Blog />
         <EducationCerts />
         <Contact />
       </main>
 
       <Footer />
+      <AskMe />
     </div>
+    </LocaleProvider>
   )
 }

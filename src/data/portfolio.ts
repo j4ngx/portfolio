@@ -5,12 +5,12 @@ export const PERSONAL = {
   lastName: 'Navarro',
   lastNameHighlight: 'Guerrero',
   title: 'Backend Python Developer',
-  tagline: 'Senior Backend Developer | Cybersecurity Specialist | Tech Lead',
+  tagline: 'Backend Developer | Cybersecurity Automation | Python Specialist',
   location: 'Granada, Spain',
   phone: '(+34) 722 666 152',
   email: 'joseng2709@gmail.com',
   github: 'https://github.com/j4ngx',
-  linkedin: 'https://linkedin.com/in/joseng2709',
+  linkedin: 'https://www.linkedin.com/in/jose-antonio-navarro-guerrero-1b6b86194/',
   available: true,
   cv: '/portfolio/cv.pdf',
   photo: '/portfolio/photo.png',
@@ -18,14 +18,12 @@ export const PERSONAL = {
 
 /** Rotating phrases for the Hero typing animation */
 export const HERO_ROLES = [
-  'Backend Developer',
-  'Security Engineer',
-  'Tech Lead',
-  'API Architect',
-  'Python Specialist',
+  'Building secure APIs.',
+  'Automating incident response.',
+  'Leading backend teams.',
+  'Engineering SOAR platforms.',
+  'Crafting Python services.',
 ] as const
-
-export const SUMMARY = `Strategic Technical Architect specializing in the convergence of high-performance Python engineering and AI-driven security automation. Expert in architecting idempotent data pipelines bridging complex backend logic with enterprise-grade Security Operations (SecOps). Mastering the API-First paradigm and FastAPI ecosystem to drive interoperability in multinational environments.`
 
 export const HERO_DESCRIPTION = `Backend Python Developer with strong experience building APIs and backend services (mainly FastAPI and Django/Flask) in security-focused environments for multinational companies. Specialized in integrating security platforms and automating incident response.`
 
@@ -100,44 +98,94 @@ export const EXPERIENCES: Experience[] = [
   },
 ]
 
+export interface Skill {
+  name: string
+  proficiency: number
+}
+
 export interface SkillGroup {
   title: string
   color: string
-  skills: string[]
+  skills: Skill[]
 }
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
-    title: 'Languages & Foundations',
+    title: 'Programming & Data',
     color: 'bg-blue-500',
-    skills: ['Python', 'SQL', 'JSON', 'English (C1)', 'Spanish (Native)'],
+    skills: [
+      { name: 'Python', proficiency: 95 },
+      { name: 'SQL', proficiency: 80 },
+      { name: 'Bash', proficiency: 70 },
+      { name: 'JSON / YAML', proficiency: 90 },
+    ],
   },
   {
     title: 'Backend & APIs',
     color: 'bg-emerald-500',
-    skills: ['FastAPI', 'Django', 'Flask', 'RESTful', 'OpenAPI', 'Hexagonal Architecture'],
+    skills: [
+      { name: 'FastAPI', proficiency: 95 },
+      { name: 'Django', proficiency: 80 },
+      { name: 'Flask', proficiency: 75 },
+      { name: 'RESTful APIs', proficiency: 90 },
+      { name: 'OpenAPI', proficiency: 90 },
+      { name: 'Hexagonal Arch.', proficiency: 85 },
+    ],
   },
   {
     title: 'Security & SOAR',
     color: 'bg-red-500',
-    skills: ['Cortex XSOAR', 'Siemplify', 'Torq', 'SIEM/EDR', 'Incident Response', 'CrowdStrike'],
+    skills: [
+      { name: 'Cortex XSOAR', proficiency: 90 },
+      { name: 'Siemplify', proficiency: 85 },
+      { name: 'Torq', proficiency: 80 },
+      { name: 'SIEM / EDR', proficiency: 85 },
+      { name: 'Incident Response', proficiency: 85 },
+      { name: 'CrowdStrike', proficiency: 75 },
+    ],
   },
   {
     title: 'Cloud & DevOps',
     color: 'bg-violet-500',
-    skills: ['AWS', 'Azure', 'Docker', 'CI/CD', 'GitHub Actions', 'Git/GitHub/GitLab'],
+    skills: [
+      { name: 'AWS', proficiency: 70 },
+      { name: 'Azure', proficiency: 65 },
+      { name: 'Docker', proficiency: 80 },
+      { name: 'CI/CD', proficiency: 85 },
+      { name: 'GitHub Actions', proficiency: 85 },
+      { name: 'Git', proficiency: 90 },
+    ],
   },
   {
     title: 'Databases & OS',
     color: 'bg-amber-500',
-    skills: ['MySQL', 'SQL Server', 'MongoDB', 'Redis', 'Linux', 'Windows Server'],
+    skills: [
+      { name: 'MySQL', proficiency: 80 },
+      { name: 'SQL Server', proficiency: 70 },
+      { name: 'MongoDB', proficiency: 75 },
+      { name: 'Redis', proficiency: 75 },
+      { name: 'Linux', proficiency: 85 },
+      { name: 'Windows Server', proficiency: 70 },
+    ],
   },
   {
-    title: 'Tools & Environment',
+    title: 'Tools & Ecosystem',
     color: 'bg-cyan-500',
-    skills: ['Poetry', 'UV', 'asdf', 'Alembic', 'Postman', 'CyberArk', 'Pydantic v2'],
+    skills: [
+      { name: 'Poetry', proficiency: 90 },
+      { name: 'UV', proficiency: 90 },
+      { name: 'asdf', proficiency: 80 },
+      { name: 'Alembic', proficiency: 80 },
+      { name: 'Pydantic v2', proficiency: 90 },
+      { name: 'CyberArk', proficiency: 70 },
+    ],
   },
 ]
+
+export const LANGUAGES = [
+  { name: 'Spanish', level: 'Native' },
+  { name: 'English', level: 'C1' },
+] as const
 
 export interface ProjectSection {
   heading: string
@@ -409,49 +457,6 @@ export const PERSONAL_PROJECTS: Project[] = [
       { metric: '1 file', label: 'To customise all content' },
     ],
     github: 'https://github.com/j4ngx/portfolio',
-  },
-]
-
-export interface Article {
-  id: string
-  title: string
-  excerpt: string
-  date: string
-  readTime: string
-  tags: string[]
-  url: string
-}
-
-export const ARTICLES: Article[] = [
-  {
-    id: 'hexagonal-fastapi',
-    title: 'Hexagonal Architecture with FastAPI: A Practical Guide',
-    excerpt:
-      'How to structure a production FastAPI project using ports and adapters. Covers dependency injection, repository pattern, and testing strategies that keep your domain logic framework-agnostic.',
-    date: 'Feb 2026',
-    readTime: '8 min read',
-    tags: ['FastAPI', 'Architecture', 'Python'],
-    url: 'https://github.com/j4ngx',
-  },
-  {
-    id: 'soar-automation',
-    title: 'Automating Incident Response with SOAR Playbooks',
-    excerpt:
-      'A deep dive into designing idempotent SOAR playbooks that handle alert enrichment, threat intelligence lookups, and automated containment — without creating false-positive storms.',
-    date: 'Jan 2026',
-    readTime: '6 min read',
-    tags: ['SOAR', 'Security', 'Automation'],
-    url: 'https://github.com/j4ngx',
-  },
-  {
-    id: 'mcp-ai-tools',
-    title: 'Building AI Developer Tools with Model Context Protocol',
-    excerpt:
-      'How I built Forge MCP — an MCP server that turns VS Code into an autonomous coding agent with structured code review and issue-to-PR workflows, using nothing but Python and FastMCP.',
-    date: 'Dec 2025',
-    readTime: '10 min read',
-    tags: ['MCP', 'AI', 'Developer Tools'],
-    url: 'https://github.com/j4ngx/Forge_MCP',
   },
 ]
 

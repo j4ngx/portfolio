@@ -35,11 +35,13 @@ export default function Hero() {
 
           <FadeInSection delay={100}>
             <h1 className="text-5xl md:text-6xl font-extrabold text-primary leading-tight tracking-tight">
-              Building <br />
-              <TypeWriter phrases={HERO_ROLES} />
-              <br />
-              <span className="text-subtle text-3xl md:text-4xl font-bold">Infrastructures.</span>
+              {PERSONAL.firstName} <br />
+              {PERSONAL.lastName}{' '}
+              <span className="text-accent">{PERSONAL.lastNameHighlight}</span>
             </h1>
+            <div className="text-xl md:text-2xl font-mono text-muted mt-4 h-8">
+              <TypeWriter phrases={HERO_ROLES} />
+            </div>
           </FadeInSection>
 
           <FadeInSection delay={200}>
@@ -47,10 +49,6 @@ export default function Hero() {
               <div className="flex items-center gap-3">
                 <Icon icon="location_on" />
                 <span>{PERSONAL.location}</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Icon icon="phone_iphone" />
-                <span>{PERSONAL.phone}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Icon icon="mail" />
@@ -92,7 +90,7 @@ export default function Hero() {
                 <span className="material-symbols-outlined group-hover:scale-110 transition-transform">
                   description
                 </span>
-                Professional History
+                View Experience
               </a>
               <a
                 href={PERSONAL.cv}

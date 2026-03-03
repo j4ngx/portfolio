@@ -10,11 +10,6 @@ export default function Footer() {
           <span>
             © {year} {PERSONAL.name.toUpperCase()}
           </span>
-          <span className="hidden md:inline text-on-solid/30">|</span>
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-            System Operational
-          </span>
         </div>
 
         <div className="flex gap-6">
@@ -36,7 +31,7 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="text-on-solid/30">© {year} · Built with React + Tailwind</div>
+        <div className="text-on-solid/30">Built with React + TypeScript + Tailwind</div>
       </div>
     </footer>
   )

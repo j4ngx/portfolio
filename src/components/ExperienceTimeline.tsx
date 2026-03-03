@@ -39,8 +39,8 @@ function TimelineItem({ exp, index }: { exp: Experience; index: number }) {
 
       {/* Tech stack card – opposite side */}
       <div
-        className={`order-1 w-full md:w-[45%] pl-20 ${
-          isEven ? 'md:pl-12' : 'md:order-1 md:pr-12 md:text-right hidden md:block'
+        className={`order-1 w-full md:w-[45%] pl-20 md:pl-0 ${
+          isEven ? 'md:pl-12' : 'md:order-1 md:pr-12 md:text-right'
         }`}
       >
         <FadeInSection delay={index * 100 + 50}>
