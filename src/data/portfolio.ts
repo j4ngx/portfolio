@@ -147,6 +147,8 @@ export interface Project {
   sections: ProjectSection[]
   outcomes: ProjectOutcome[]
   github?: string
+  /** Tab key in the Playground section (e.g. 'forge', 'glados') */
+  playground?: string
 }
 
 export const PROFESSIONAL_PROJECTS: Project[] = [
@@ -280,6 +282,7 @@ export const PERSONAL_PROJECTS: Project[] = [
       { metric: '3 steps', label: 'To add a new tool' },
     ],
     github: 'https://github.com/j4ngx/Forge_MCP',
+    playground: 'forge',
   },
   {
     id: 'glados-installer',
@@ -321,6 +324,44 @@ export const PERSONAL_PROJECTS: Project[] = [
       { metric: '4', label: 'Installation phases' },
     ],
     github: 'https://github.com/j4ngx/GLaDos-Installer',
+    playground: 'glados',
+  },
+  {
+    id: 'mesocycle-planner',
+    icon: '🏋️',
+    title: 'Mesocycle Planner',
+    subtitle: 'Full-Stack Gym Training Periodization App',
+    tags: ['Python', 'FastAPI', 'SwiftUI', 'MongoDB', 'OpenAPI', 'JWT', 'Hexagonal Architecture'],
+    sections: [
+      {
+        heading: 'What is it',
+        content:
+          'A full-stack training periodization application with a Python backend (FastAPI + MongoDB) and a native iOS client (SwiftUI). It lets users create structured mesocycles, log workouts, track body metrics over time, and get AI-generated training suggestions — all through 38 REST endpoints defined API-First with OpenAPI.',
+      },
+      {
+        heading: 'Backend architecture',
+        content:
+          'Hexagonal Architecture with a clean Domain layer (Mesocycle, Workout, Progress, Exercise entities), Infrastructure layer with MongoDB repositories, and an API layer auto-generated from the OpenAPI spec. JWT authentication, full CRUD for all resources, analytics endpoints, smart logging, and progression recommendations.',
+      },
+      {
+        heading: 'iOS client',
+        content:
+          'Native SwiftUI app following MVVM with Observable services for state management. Five main tabs: Home dashboard with stats, Exercise library with search and filters, Mesocycle management with timeline and progress bars, Workout tracking with completion flow, and Progress charts using the Charts framework. Consistent design system with AppColors, AppTypography, and AppSpacing.',
+      },
+      {
+        heading: 'Who is it for',
+        content:
+          'Gym-goers who want structured, science-based training periodization instead of random workouts. The app handles mesocycle planning (hypertrophy, strength, endurance), deload week scheduling, progressive overload tracking, and body composition analytics — bridging the gap between a spreadsheet and a personal trainer.',
+      },
+    ],
+    outcomes: [
+      { metric: '38', label: 'API endpoints' },
+      { metric: '2', label: 'Platforms (Backend + iOS)' },
+      { metric: 'Hex', label: 'Hexagonal Architecture' },
+      { metric: 'JWT', label: 'Authentication & authorization' },
+    ],
+    github: 'https://github.com/j4ngx/mesocycle_planner',
+    playground: 'evofit',
   },
   {
     id: 'portfolio',

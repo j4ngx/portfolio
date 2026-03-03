@@ -109,3 +109,12 @@ section[id] {
 .animate-cursor {
   animation: blink 1s step-end infinite;
 }
+
+/* EvoFit phone mockup scrollbar */
+.hide-evofit-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-evofit-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
