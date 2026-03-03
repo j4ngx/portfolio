@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { PERSONAL, PERSONAL_PROJECTS, PROFESSIONAL_PROJECTS } from '../data/portfolio'
+import Icon from './Icon'
 
 interface PaletteItem {
   id: string
@@ -172,7 +173,7 @@ export default function CommandPalette({ toggleTheme }: Props) {
       >
         {/* Search input */}
         <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
-          <span className="material-symbols-outlined text-muted text-lg">search</span>
+          <Icon icon="search" className="text-muted text-lg" />
           <input
             ref={inputRef}
             type="text"
@@ -202,7 +203,7 @@ export default function CommandPalette({ toggleTheme }: Props) {
                 idx === selectedIdx ? 'bg-solid text-on-solid' : 'text-subtle hover:bg-bg'
               }`}
             >
-              <span className="material-symbols-outlined text-lg opacity-60">{item.icon}</span>
+              <Icon icon={item.icon} className="text-lg opacity-60" />
               <div className="flex-1 min-w-0">
                 <div className="text-sm font-medium font-mono truncate">{item.label}</div>
                 {item.subtitle && (

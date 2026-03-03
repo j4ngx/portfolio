@@ -1,5 +1,6 @@
 import { EXPERIENCES, type Experience } from '../data/portfolio'
 import FadeInSection from './FadeInSection'
+import { useLocale } from '../hooks/useLocale'
 
 function TimelineItem({ exp, index }: { exp: Experience; index: number }) {
   const isEven = index % 2 === 0
@@ -54,16 +55,18 @@ function TimelineItem({ exp, index }: { exp: Experience; index: number }) {
 }
 
 export default function ExperienceTimeline() {
+  const { t } = useLocale()
+
   return (
     <section id="experience" className="py-24 bg-surface relative">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <FadeInSection>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Professional Experience
+              {t('experience.title')}
             </h2>
             <p className="text-subtle max-w-2xl mx-auto">
-              Career path focused on high-stakes cybersecurity and automation engineering.
+              {t('experience.subtitle')}
             </p>
           </div>
         </FadeInSection>

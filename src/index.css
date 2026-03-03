@@ -118,3 +118,42 @@ section[id] {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ─── Print stylesheet ─── */
+@media print {
+  nav,
+  footer,
+  .fixed,
+  button,
+  #askme-widget {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+    font-size: 11pt;
+  }
+
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555;
+  }
+
+  a[href^="#"]::after,
+  a[href^="mailto:"]::after {
+    content: none;
+  }
+}
+
+/* ─── Focus visible ring (accessibility) ─── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}

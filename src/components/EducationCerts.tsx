@@ -1,8 +1,11 @@
-import { EDUCATION, CERTIFICATIONS } from '../data/portfolio'
+import { EDUCATION, CERTIFICATIONS, LANGUAGES } from '../data/portfolio'
 import Icon from './Icon'
 import FadeInSection from './FadeInSection'
+import { useLocale } from '../hooks/useLocale'
 
 export default function EducationCerts() {
+  const { t } = useLocale()
+
   return (
     <section id="education" className="py-24 bg-bg border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +17,7 @@ export default function EducationCerts() {
                 <span className="text-primary">
                   <Icon icon="school" />
                 </span>{' '}
-                EDUCATION
+                {t('education.education').toUpperCase()}
               </h2>
             </FadeInSection>
 
@@ -29,6 +32,25 @@ export default function EducationCerts() {
                 </FadeInSection>
               ))}
             </div>
+
+            {/* Languages */}
+            <FadeInSection delay={400}>
+              <h3 className="text-xl font-bold text-primary mt-10 mb-4 flex items-center gap-3">
+                <Icon icon="language" />
+                {t('education.languages').toUpperCase()}
+              </h3>
+              <div className="flex gap-4">
+                {LANGUAGES.map((lang) => (
+                  <div
+                    key={lang.name}
+                    className="bg-surface border border-border rounded px-5 py-3 text-center flex-1"
+                  >
+                    <div className="font-bold text-primary text-sm">{lang.name}</div>
+                    <div className="text-accent text-xs font-mono mt-1">{lang.level}</div>
+                  </div>
+                ))}
+              </div>
+            </FadeInSection>
           </div>
 
           {/* Certifications */}
@@ -38,7 +60,7 @@ export default function EducationCerts() {
                 <span className="text-accent">
                   <Icon icon="verified" />
                 </span>{' '}
-                CERTIFICATIONS
+                {t('education.certifications').toUpperCase()}
               </h2>
             </FadeInSection>
 

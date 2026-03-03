@@ -3,6 +3,8 @@ import { PERSONAL } from '../data/portfolio'
 import Icon from './Icon'
 import ThemeToggle from './ThemeToggle'
 import { useLocale } from '../hooks/useLocale'
+import type { TranslationKey } from '../data/i18n'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_LINKS = [
   { href: '#summary', id: 'summary', label: 'summary' },
@@ -24,7 +26,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('summary')
-  const { locale, toggleLocale } = useLocale()
+  const { locale, toggleLocale, t } = useLocale()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -89,7 +91,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                 }`}
                 aria-current={activeSection === link.id ? 'page' : undefined}
               >
-                {link.label}
+                {t(`nav.${link.label}` as TranslationKey)}
               </a>
             ))}
           </div>
@@ -142,28 +144,42 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
         </div>
 
         {/* Mobile menu */}
-        {mobileOpen && (
-          <div className="xl:hidden pb-4 border-t border-border mt-2 pt-4 space-y-3">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className={`block transition-colors font-mono text-sm ${
-                  activeSection === link.id ? 'text-accent font-semibold' : 'text-muted hover:text-primary'
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href={`mailto:${PERSONAL.email}`}
-              className="block bg-solid hover:bg-solid-hover text-on-solid px-4 py-2 rounded text-sm font-medium text-center"
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              className="xl:hidden pb-4 border-t border-border mt-2 pt-4 space-y-3 overflow-hidden"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.25, ease: 'easeInOut' }}
             >
-              Contact
-            </a>
-          </div>
-        )}
+              {NAV_LINKS.map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`block transition-colors font-mono text-sm ${
+                    activeSection === link.id ? 'text-accent font-semibold' : 'text-muted hover:text-primary'
+                  }`}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.04 }}
+                >
+                  {t(`nav.${link.label}` as TranslationKey)}
+                </motion.a>
+              ))}
+              <motion.a
+                href={`mailto:${PERSONAL.email}`}
+                className="block bg-solid hover:bg-solid-hover text-on-solid px-4 py-2 rounded text-sm font-medium text-center"
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: NAV_LINKS.length * 0.04 }}
+              >
+                Contact
+              </motion.a>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   )

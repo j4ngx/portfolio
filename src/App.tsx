@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import ExperienceTimeline from './components/ExperienceTimeline'
@@ -12,6 +12,7 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import CommandPalette from './components/CommandPalette'
 import ScrollToTop from './components/ScrollToTop'
+import ScrollProgress from './components/ScrollProgress'
 import ErrorBoundary from './components/ErrorBoundary'
 import AskMe from './components/AskMe'
 import { useTheme } from './hooks/useTheme'
@@ -33,6 +34,19 @@ function DemoFallback() {
 export default function App() {
   const { theme, toggle } = useTheme()
 
+  /* Track CV download clicks */
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest('.cv-download')
+      if (target) {
+        // eslint-disable-next-line no-console
+        console.info('[analytics] CV downloaded', new Date().toISOString())
+      }
+    }
+    document.addEventListener('click', handler)
+    return () => document.removeEventListener('click', handler)
+  }, [])
+
   return (
     <LocaleProvider>
     <div className="text-subtle font-[var(--font-display)] bg-bg">
@@ -48,6 +62,7 @@ export default function App() {
       <div className="fixed inset-0 pointer-events-none z-0 bg-grid opacity-40" />
 
       <Navbar theme={theme} toggleTheme={toggle} />
+      <ScrollProgress />
       <CommandPalette toggleTheme={toggle} />
       <ScrollToTop />
 

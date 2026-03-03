@@ -1,5 +1,6 @@
 import { SKILL_GROUPS } from '../data/portfolio'
 import FadeInSection from './FadeInSection'
+import { useLocale } from '../hooks/useLocale'
 
 /**
  * Pure-SVG radar (spider) chart rendering skill group coverage.
@@ -81,6 +82,7 @@ function RadarGrid() {
 
 export default function SkillRadar() {
   const data = useRadarData()
+  const { t } = useLocale()
   const polygonPoints = data.map((d) => `${d.x},${d.y}`).join(' ')
 
   return (
@@ -90,10 +92,10 @@ export default function SkillRadar() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-12">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-primary">
-                Skill Coverage
+                {t('skills.title')}
               </h2>
               <p className="text-subtle mt-2">
-                Competency distribution across technical domains.
+                {t('skills.subtitle')}
               </p>
             </div>
 

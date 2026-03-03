@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Icon from './Icon'
 
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false)
@@ -24,12 +25,12 @@ export default function ScrollToTop() {
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       aria-label="Scroll to top"
-      className="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-solid text-on-solid shadow-lg
+      className="fixed bottom-22 right-6 z-40 w-11 h-11 rounded-full bg-solid text-on-solid shadow-lg
                  flex items-center justify-center
                  hover:bg-solid-hover transition-all duration-300
                  animate-fade-in-up cursor-pointer"
     >
-      <span className="material-symbols-outlined text-lg">arrow_upward</span>
+      <Icon icon="arrow_upward" className="text-lg" />
     </button>
   )
 }

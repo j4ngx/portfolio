@@ -1,7 +1,10 @@
 import { SKILL_GROUPS } from '../data/portfolio'
 import FadeInSection from './FadeInSection'
+import { useLocale } from '../hooks/useLocale'
 
 export default function TechStack() {
+  const { t } = useLocale()
+
   return (
     <section id="stack" className="py-24 bg-bg border-y border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,10 +12,10 @@ export default function TechStack() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-12">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-primary">
-                Technical Ecosystem
+                {t('stack.title')}
               </h2>
               <p className="text-subtle mt-2">
-                Comprehensive skill set for building production-ready security solutions.
+                {t('stack.subtitle')}
               </p>
             </div>
 
