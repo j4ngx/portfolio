@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FadeInSection from './FadeInSection'
 import GladosDemo from './GladosDemo'
 import ForgeDemo from './ForgeDemo'
@@ -28,6 +28,15 @@ const TABS: Tab[] = [
 export default function Playground() {
   const [activeTab, setActiveTab] = useState('forge')
   const currentTab = TABS.find((t) => t.id === activeTab)!
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const tabId = (e as CustomEvent<string>).detail
+      if (TABS.some((t) => t.id === tabId)) setActiveTab(tabId)
+    }
+    window.addEventListener('playground-tab', handler)
+    return () => window.removeEventListener('playground-tab', handler)
+  }, [])
 
   return (
     <section id="playground" className="relative py-24 px-4 max-w-6xl mx-auto">
