@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import FadeInSection from './FadeInSection'
 import GladosDemo from './GladosDemo'
 import ForgeDemo from './ForgeDemo'
+import EvoFitDemo from './EvoFitDemo'
 
 interface Tab {
   id: string
@@ -23,11 +24,18 @@ const TABS: Tab[] = [
     label: 'GLaDOS Installer',
     desc: 'Interactive terminal — run commands against a simulated GLaDOS environment',
   },
+  {
+    id: 'evofit',
+    icon: '🏋️',
+    label: 'EvoFit',
+    desc: 'Mobile training app — tap Start Session to try the live workout tracker',
+  },
 ]
 
 export default function Playground() {
   const [activeTab, setActiveTab] = useState('forge')
   const currentTab = TABS.find((t) => t.id === activeTab)!
+  const isEvofit = activeTab === 'evofit'
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -59,15 +67,21 @@ export default function Playground() {
 
       <FadeInSection delay={120}>
         {/* Tab bar */}
-        <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
+        <div className={`flex gap-2 mb-4 overflow-x-auto pb-1 px-1 py-1 rounded-xl transition-colors ${
+          isEvofit ? 'bg-[#161618]' : ''
+        }`}>
           {TABS.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-mono whitespace-nowrap transition-all border ${
-                activeTab === tab.id
-                  ? 'bg-solid text-on-solid border-solid shadow-sm'
-                  : 'bg-surface text-muted border-border hover:bg-card hover:text-primary'
+                isEvofit
+                  ? activeTab === tab.id
+                    ? 'bg-[#0ff069] text-black border-[#0ff069] font-bold shadow-[0_0_12px_rgba(15,240,105,0.2)]'
+                    : 'bg-transparent text-gray-500 border-white/5 hover:text-gray-300 hover:bg-white/5'
+                  : activeTab === tab.id
+                    ? 'bg-solid text-on-solid border-solid shadow-sm'
+                    : 'bg-surface text-muted border-border hover:bg-card hover:text-primary'
               }`}
             >
               <span>{tab.icon}</span>
@@ -77,12 +91,19 @@ export default function Playground() {
         </div>
 
         {/* Description */}
-        <p className="text-xs font-mono text-muted mb-4 pl-1">{currentTab.desc}</p>
+        <p className={`text-xs font-mono mb-4 pl-1 transition-colors ${
+          isEvofit ? 'text-gray-600' : 'text-muted'
+        }`}>{currentTab.desc}</p>
 
         {/* Demo panel */}
-        <div className="bg-surface rounded-xl border border-border p-4 md:p-6 h-[520px] md:h-[560px]">
+        <div className={`rounded-xl border p-4 md:p-6 h-[520px] md:h-[560px] transition-colors ${
+          isEvofit
+            ? 'bg-[#0c0c0e] border-white/5 shadow-[0_0_40px_rgba(15,240,105,0.04)]'
+            : 'bg-surface border-border'
+        }`}>
           {activeTab === 'glados' && <GladosDemo />}
           {activeTab === 'forge' && <ForgeDemo />}
+          {activeTab === 'evofit' && <EvoFitDemo />}
         </div>
       </FadeInSection>
     </section>

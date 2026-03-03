@@ -361,6 +361,7 @@ export const PERSONAL_PROJECTS: Project[] = [
       { metric: 'JWT', label: 'Authentication & authorization' },
     ],
     github: 'https://github.com/j4ngx/mesocycle_planner',
+    playground: 'evofit',
   },
   {
     id: 'portfolio',
