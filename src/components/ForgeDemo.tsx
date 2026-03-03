@@ -393,7 +393,7 @@ const SCENARIOS: Record<ToolId, ChatMsg[]> = {
       text: [
         '## Scaffold: order_svc',
         '',
-        '**Stack** amiga · **DB** postgresql',
+        '**Stack** fastapi · **DB** postgresql',
         '**Entities** Order, Customer',
         '',
         'Creating domain layer…',
