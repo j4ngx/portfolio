@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { href: '#experience', label: './timeline' },
   { href: '#stack', label: './stack' },
   { href: '#projects', label: './projects' },
+  { href: '#playground', label: './playground' },
   { href: '#education', label: './academic' },
 ]
 

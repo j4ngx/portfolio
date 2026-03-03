@@ -3,6 +3,7 @@ import Hero from './components/Hero'
 import ExperienceTimeline from './components/ExperienceTimeline'
 import TechStack from './components/TechStack'
 import Projects from './components/Projects'
+import Playground from './components/Playground'
 import EducationCerts from './components/EducationCerts'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -23,6 +24,7 @@ export default function App() {
         <ExperienceTimeline />
         <TechStack />
         <Projects />
+        <Playground />
         <EducationCerts />
         <Contact />
       </main>
