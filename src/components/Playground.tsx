@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ComponentType } from 'react'
 import FadeInSection from './FadeInSection'
-import GladosDemo from './GladosDemo'
-import ForgeDemo from './ForgeDemo'
-import EvoFitDemo from './EvoFitDemo'
 
 interface Tab {
   id: string
@@ -32,9 +29,15 @@ const TABS: Tab[] = [
   },
 ]
 
-export default function Playground() {
+interface PlaygroundProps {
+  readonly GladosDemo: ComponentType
+  readonly EvoFitDemo: ComponentType
+  readonly ForgeDemo: ComponentType
+}
+
+export default function Playground({ GladosDemo, EvoFitDemo, ForgeDemo }: PlaygroundProps) {
   const [activeTab, setActiveTab] = useState('forge')
-  const currentTab = TABS.find((t) => t.id === activeTab)!
+  const currentTab = TABS.find((t) => t.id === activeTab)
   const isEvofit = activeTab === 'evofit'
 
   useEffect(() => {
@@ -93,7 +96,7 @@ export default function Playground() {
         {/* Description */}
         <p className={`text-xs font-mono mb-4 pl-1 transition-colors ${
           isEvofit ? 'text-gray-600' : 'text-muted'
-        }`}>{currentTab.desc}</p>
+        }`}>{currentTab?.desc}</p>
 
         {/* Demo panel */}
         <div className={`rounded-xl border p-4 md:p-6 h-[520px] md:h-[560px] transition-colors ${

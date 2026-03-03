@@ -4,12 +4,14 @@ import Icon from './Icon'
 import ThemeToggle from './ThemeToggle'
 
 const NAV_LINKS = [
-  { href: '#summary', id: 'summary', label: './summary' },
-  { href: '#experience', id: 'experience', label: './timeline' },
-  { href: '#stack', id: 'stack', label: './stack' },
-  { href: '#projects', id: 'projects', label: './projects' },
-  { href: '#playground', id: 'playground', label: './playground' },
-  { href: '#education', id: 'education', label: './academic' },
+  { href: '#summary', id: 'summary', label: 'summary' },
+  { href: '#experience', id: 'experience', label: 'timeline' },
+  { href: '#stack', id: 'stack', label: 'stack' },
+  { href: '#projects', id: 'projects', label: 'projects' },
+  { href: '#playground', id: 'playground', label: 'playground' },
+  { href: '#github', id: 'github', label: 'github' },
+  { href: '#blog', id: 'blog', label: 'blog' },
+  { href: '#education', id: 'education', label: 'academic' },
 ]
 
 interface NavbarProps {
@@ -73,12 +75,12 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
           </a>
 
           {/* Desktop navigation */}
-          <div className="hidden md:flex items-baseline space-x-8 text-sm font-medium">
+          <div className="hidden xl:flex items-baseline gap-3 2xl:gap-5 text-[11px] font-medium">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`transition-colors font-mono ${
+                className={`transition-colors font-mono whitespace-nowrap ${
                   activeSection === link.id
                     ? 'text-accent font-semibold'
                     : 'text-muted hover:text-primary'
@@ -90,11 +92,11 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
           </div>
 
           {/* Right section */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             {/* Search (Cmd+K) */}
             <button
               onClick={openPalette}
-              className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded border border-border text-xs text-muted hover:text-primary hover:border-primary/40 transition-colors font-mono"
+              className="hidden xl:inline-flex items-center gap-1 px-2 py-1 rounded border border-border text-[11px] text-muted hover:text-primary hover:border-primary/40 transition-colors font-mono"
               aria-label="Open command palette"
             >
               <Icon icon="search" />
@@ -104,21 +106,21 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             <ThemeToggle theme={theme} toggle={toggleTheme} />
 
             {PERSONAL.available && (
-              <span className="hidden lg:inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800 font-mono">
-                STATUS: AVAILABLE
+              <span className="hidden 2xl:inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800 font-mono">
+                AVAILABLE
               </span>
             )}
 
             <a
               href={`mailto:${PERSONAL.email}`}
-              className="hidden sm:inline-flex bg-solid hover:bg-solid-hover text-on-solid px-4 py-2 rounded text-sm font-medium transition-colors"
+              className="hidden sm:inline-flex bg-solid hover:bg-solid-hover text-on-solid px-3 py-1.5 rounded text-xs font-medium transition-colors"
             >
               Contact
             </a>
 
             {/* Mobile hamburger */}
             <button
-              className="md:hidden text-primary"
+              className="xl:hidden text-primary"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -129,7 +131,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden pb-4 border-t border-border mt-2 pt-4 space-y-3">
+          <div className="xl:hidden pb-4 border-t border-border mt-2 pt-4 space-y-3">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}

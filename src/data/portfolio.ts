@@ -13,7 +13,7 @@ export const PERSONAL = {
   linkedin: 'https://linkedin.com/in/joseng2709',
   available: true,
   cv: '/portfolio/cv.pdf',
-  photo: '/portfolio/photo.webp',
+  photo: '/portfolio/photo.png',
 } as const
 
 /** Rotating phrases for the Hero typing animation */
@@ -409,6 +409,49 @@ export const PERSONAL_PROJECTS: Project[] = [
       { metric: '1 file', label: 'To customise all content' },
     ],
     github: 'https://github.com/j4ngx/portfolio',
+  },
+]
+
+export interface Article {
+  id: string
+  title: string
+  excerpt: string
+  date: string
+  readTime: string
+  tags: string[]
+  url: string
+}
+
+export const ARTICLES: Article[] = [
+  {
+    id: 'hexagonal-fastapi',
+    title: 'Hexagonal Architecture with FastAPI: A Practical Guide',
+    excerpt:
+      'How to structure a production FastAPI project using ports and adapters. Covers dependency injection, repository pattern, and testing strategies that keep your domain logic framework-agnostic.',
+    date: 'Feb 2026',
+    readTime: '8 min read',
+    tags: ['FastAPI', 'Architecture', 'Python'],
+    url: 'https://github.com/j4ngx',
+  },
+  {
+    id: 'soar-automation',
+    title: 'Automating Incident Response with SOAR Playbooks',
+    excerpt:
+      'A deep dive into designing idempotent SOAR playbooks that handle alert enrichment, threat intelligence lookups, and automated containment — without creating false-positive storms.',
+    date: 'Jan 2026',
+    readTime: '6 min read',
+    tags: ['SOAR', 'Security', 'Automation'],
+    url: 'https://github.com/j4ngx',
+  },
+  {
+    id: 'mcp-ai-tools',
+    title: 'Building AI Developer Tools with Model Context Protocol',
+    excerpt:
+      'How I built Forge MCP — an MCP server that turns VS Code into an autonomous coding agent with structured code review and issue-to-PR workflows, using nothing but Python and FastMCP.',
+    date: 'Dec 2025',
+    readTime: '10 min read',
+    tags: ['MCP', 'AI', 'Developer Tools'],
+    url: 'https://github.com/j4ngx/Forge_MCP',
   },
 ]
 
