@@ -16,7 +16,7 @@ export default function Contact() {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
               href={`mailto:${PERSONAL.email}`}
-              className="bg-primary hover:bg-accent text-white px-8 py-4 rounded text-lg font-medium shadow-sm transition-all transform hover:-translate-y-0.5"
+              className="bg-solid hover:bg-solid-hover text-on-solid px-8 py-4 rounded text-lg font-medium shadow-sm transition-all transform hover:-translate-y-0.5"
             >
               {PERSONAL.email}
             </a>
