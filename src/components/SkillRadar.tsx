@@ -12,25 +12,26 @@ const CENTER = SIZE / 2
 const RADIUS = 120
 const LEVELS = 4
 
-/** Map skill groups into radar axes */
+/** Map skill groups into radar axes using average proficiency */
 function useRadarData() {
-  const max = Math.max(...SKILL_GROUPS.map((g) => g.skills.length))
-  return SKILL_GROUPS.map((g, i) => {
+  const data = SKILL_GROUPS.map((g, i) => {
+    const avgProf = g.skills.reduce((sum, s) => sum + s.proficiency, 0) / g.skills.length / 100
     const angle = (Math.PI * 2 * i) / SKILL_GROUPS.length - Math.PI / 2
-    const value = g.skills.length / max
     return {
-      label: g.title.split('&')[0].trim(), // short label
+      label: g.title.split('&')[0].trim(),
       fullLabel: g.title,
-      value,
+      value: avgProf,
+      proficiency: Math.round(avgProf * 100),
       count: g.skills.length,
-      x: CENTER + Math.cos(angle) * RADIUS * value,
-      y: CENTER + Math.sin(angle) * RADIUS * value,
+      x: CENTER + Math.cos(angle) * RADIUS * avgProf,
+      y: CENTER + Math.sin(angle) * RADIUS * avgProf,
       labelX: CENTER + Math.cos(angle) * (RADIUS + 28),
       labelY: CENTER + Math.sin(angle) * (RADIUS + 28),
       axisX: CENTER + Math.cos(angle) * RADIUS,
       axisY: CENTER + Math.sin(angle) * RADIUS,
     }
   })
+  return data
 }
 
 function RadarGrid() {
@@ -95,11 +96,7 @@ export default function SkillRadar() {
                 Competency distribution across technical domains.
               </p>
             </div>
-            <div className="hidden md:block">
-              <span className="font-mono text-xs text-muted bg-surface px-3 py-1 rounded border border-border">
-                radar_v1.0
-              </span>
-            </div>
+
           </div>
         </FadeInSection>
 
@@ -162,7 +159,7 @@ export default function SkillRadar() {
                       {d.fullLabel}
                     </p>
                     <p className="text-xs text-muted font-mono">
-                      {d.count} skills · {Math.round(d.value * 100)}%
+                      {d.count} skills · {d.proficiency}% avg
                     </p>
                   </div>
                 </div>

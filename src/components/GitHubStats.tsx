@@ -12,27 +12,63 @@ interface GitHubData {
 }
 
 const GITHUB_USER = PERSONAL.github.split('/').pop() ?? 'j4ngx'
+const CACHE_KEY = 'portfolio-github-stats'
+const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
 
-async function fetchGitHubData(): Promise<GitHubData> {
+interface GitHubUser {
+  public_repos: number
+  followers: number
+  following: number
+}
+
+interface GitHubRepo {
+  language: string | null
+  stargazers_count: number
+}
+
+interface GitHubEvent {
+  type: string
+  repo: { name: string }
+  payload: { commits?: { message: string }[] }
+  created_at: string
+}
+
+function getCached(): GitHubData | null {
+  try {
+    const raw = sessionStorage.getItem(CACHE_KEY)
+    if (!raw) return null
+    const { data, ts } = JSON.parse(raw)
+    if (Date.now() - ts > CACHE_TTL) return null
+    return data
+  } catch {
+    return null
+  }
+}
+
+function setCache(data: GitHubData) {
+  sessionStorage.setItem(CACHE_KEY, JSON.stringify({ data, ts: Date.now() }))
+}
+
+async function fetchGitHubData(signal: AbortSignal): Promise<GitHubData> {
   const headers: HeadersInit = { Accept: 'application/vnd.github.v3+json' }
+  const opts = { headers, signal }
 
   const [userRes, reposRes, eventsRes] = await Promise.all([
-    fetch(`https://api.github.com/users/${GITHUB_USER}`, { headers }),
-    fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`, { headers }),
-    fetch(`https://api.github.com/users/${GITHUB_USER}/events/public?per_page=10`, { headers }),
+    fetch(`https://api.github.com/users/${GITHUB_USER}`, opts),
+    fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`, opts),
+    fetch(`https://api.github.com/users/${GITHUB_USER}/events/public?per_page=10`, opts),
   ])
 
   if (!userRes.ok || !reposRes.ok) throw new Error('GitHub API error')
 
-  const user = await userRes.json()
-  const repos: Array<Record<string, unknown>> = await reposRes.json()
-  const events: Array<Record<string, unknown>> = eventsRes.ok ? await eventsRes.json() : []
+  const user: GitHubUser = await userRes.json()
+  const repos: GitHubRepo[] = await reposRes.json()
+  const events: GitHubEvent[] = eventsRes.ok ? await eventsRes.json() : []
 
   // Language stats
   const langMap = new Map<string, number>()
   for (const r of repos) {
-    const lang = r.language as string | null
-    if (lang) langMap.set(lang, (langMap.get(lang) ?? 0) + 1)
+    if (r.language) langMap.set(r.language, (langMap.get(r.language) ?? 0) + 1)
   }
   const total = [...langMap.values()].reduce((a, b) => a + b, 0)
   const topLanguages = [...langMap.entries()]
@@ -40,37 +76,18 @@ async function fetchGitHubData(): Promise<GitHubData> {
     .slice(0, 5)
     .map(([name, count]) => ({ name, pct: Math.round((count / total) * 100) }))
 
-  // Stars
-  const totalStars = repos.reduce(
-    (acc, r) => acc + ((r.stargazers_count as number) ?? 0),
-    0,
-  )
+  const totalStars = repos.reduce((acc, r) => acc + (r.stargazers_count ?? 0), 0)
 
-  // Recent push events
-  const pushEvents = events
+  const recentActivity = events
     .filter((e) => e.type === 'PushEvent')
     .slice(0, 4)
-  const recentActivity = pushEvents.map((e) => {
-    const payload = e.payload as Record<string, unknown>
-    const commits = payload.commits as Array<Record<string, string>> | undefined
-    return {
-      repo: ((e.repo as Record<string, string>)?.name ?? '').replace(`${GITHUB_USER}/`, ''),
-      message: commits?.[0]?.message?.split('\n')[0] ?? 'push',
-      date: new Date(e.created_at as string).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-      }),
-    }
-  })
+    .map((e) => ({
+      repo: (e.repo?.name ?? '').replace(`${GITHUB_USER}/`, ''),
+      message: e.payload.commits?.[0]?.message?.split('\n')[0] ?? 'push',
+      date: new Date(e.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+    }))
 
-  return {
-    publicRepos: user.public_repos,
-    followers: user.followers,
-    following: user.following,
-    topLanguages,
-    totalStars,
-    recentActivity,
-  }
+  return { publicRepos: user.public_repos, followers: user.followers, following: user.following, topLanguages, totalStars, recentActivity }
 }
 
 const LANG_COLORS: Record<string, string> = {
@@ -100,9 +117,23 @@ export default function GitHubStats() {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    fetchGitHubData()
-      .then(setData)
-      .catch(() => setError(true))
+    const cached = getCached()
+    if (cached) {
+      setData(cached)
+      return
+    }
+
+    const controller = new AbortController()
+    fetchGitHubData(controller.signal)
+      .then((d) => {
+        setData(d)
+        setCache(d)
+      })
+      .catch((err) => {
+        if (err.name !== 'AbortError') setError(true)
+      })
+
+    return () => controller.abort()
   }, [])
 
   if (error) {
@@ -189,7 +220,7 @@ export default function GitHubStats() {
                     <p className="text-muted text-xs">No recent public activity.</p>
                   ) : (
                     <div className="space-y-3">
-                      {data.recentActivity.map((event, i) => (
+                      {data.recentActivity.map((event) => (
                         <div key={`${event.repo}-${event.date}`} className="flex items-start gap-3">
                           <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 shrink-0" />
                           <div className="min-w-0">

@@ -22,7 +22,6 @@ function buildItems(close: () => void, toggleTheme?: () => void): PaletteItem[] 
     { id: 's-projects', label: './projects', subtitle: 'Professional & open-source', icon: 'folder', action: go('projects') },
     { id: 's-playground', label: './playground', subtitle: 'Interactive demos', icon: 'sports_esports', action: go('playground') },
     { id: 's-github', label: './github', subtitle: 'GitHub activity & stats', icon: 'monitoring', action: go('github') },
-    { id: 's-blog', label: './blog', subtitle: 'Articles & insights', icon: 'article', action: go('blog') },
     { id: 's-education', label: './academic', subtitle: 'Education & certifications', icon: 'school', action: go('education') },
     { id: 's-contact', label: './contact', subtitle: 'Get in touch', icon: 'mail', action: go('contact') },
   ]

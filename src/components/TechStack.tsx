@@ -15,11 +15,7 @@ export default function TechStack() {
                 Comprehensive skill set for building production-ready security solutions.
               </p>
             </div>
-            <div className="hidden md:block">
-              <span className="font-mono text-xs text-muted bg-surface px-3 py-1 rounded border border-border">
-                stack_v4.2.0
-              </span>
-            </div>
+
           </div>
         </FadeInSection>
 
@@ -34,10 +30,10 @@ export default function TechStack() {
                 <div className="flex flex-wrap gap-2">
                   {group.skills.map((skill) => (
                     <span
-                      key={skill}
+                      key={skill.name}
                       className="px-2 py-1 bg-bg rounded text-xs font-mono text-subtle"
                     >
-                      {skill}
+                      {skill.name}
                     </span>
                   ))}
                 </div>

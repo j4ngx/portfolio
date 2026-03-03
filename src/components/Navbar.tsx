@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { PERSONAL } from '../data/portfolio'
 import Icon from './Icon'
 import ThemeToggle from './ThemeToggle'
+import { useLocale } from '../hooks/useLocale'
 
 const NAV_LINKS = [
   { href: '#summary', id: 'summary', label: 'summary' },
@@ -10,8 +11,8 @@ const NAV_LINKS = [
   { href: '#projects', id: 'projects', label: 'projects' },
   { href: '#playground', id: 'playground', label: 'playground' },
   { href: '#github', id: 'github', label: 'github' },
-  { href: '#blog', id: 'blog', label: 'blog' },
   { href: '#education', id: 'education', label: 'academic' },
+  { href: '#contact', id: 'contact', label: 'contact' },
 ]
 
 interface NavbarProps {
@@ -23,6 +24,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('summary')
+  const { locale, toggleLocale } = useLocale()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -85,6 +87,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                     ? 'text-accent font-semibold'
                     : 'text-muted hover:text-primary'
                 }`}
+                aria-current={activeSection === link.id ? 'page' : undefined}
               >
                 {link.label}
               </a>
@@ -104,6 +107,15 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             </button>
 
             <ThemeToggle theme={theme} toggle={toggleTheme} />
+
+            {/* Language toggle */}
+            <button
+              onClick={toggleLocale}
+              className="inline-flex items-center px-2 py-1 rounded border border-border text-[11px] text-muted hover:text-primary hover:border-primary/40 transition-colors font-mono font-medium"
+              aria-label={`Switch to ${locale === 'en' ? 'Spanish' : 'English'}`}
+            >
+              {locale === 'en' ? 'ES' : 'EN'}
+            </button>
 
             {PERSONAL.available && (
               <span className="hidden 2xl:inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800 font-mono">
