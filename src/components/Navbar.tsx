@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { PERSONAL } from '../data/portfolio'
 import Icon from './Icon'
 import ThemeToggle from './ThemeToggle'
 
 const NAV_LINKS = [
-  { href: '#summary', label: './summary' },
-  { href: '#experience', label: './timeline' },
-  { href: '#stack', label: './stack' },
-  { href: '#projects', label: './projects' },
-  { href: '#playground', label: './playground' },
-  { href: '#education', label: './academic' },
+  { href: '#summary', id: 'summary', label: './summary' },
+  { href: '#experience', id: 'experience', label: './timeline' },
+  { href: '#stack', id: 'stack', label: './stack' },
+  { href: '#projects', id: 'projects', label: './projects' },
+  { href: '#playground', id: 'playground', label: './playground' },
+  { href: '#education', id: 'education', label: './academic' },
 ]
 
 interface NavbarProps {
@@ -20,11 +20,39 @@ interface NavbarProps {
 export default function Navbar({ theme, toggleTheme }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('summary')
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  /* ── active-section tracker via IntersectionObserver ── */
+  useEffect(() => {
+    const ids = NAV_LINKS.map((l) => l.id)
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            setActiveSection(e.target.id)
+          }
+        }
+      },
+      { rootMargin: '-40% 0px -55% 0px' },
+    )
+    for (const id of ids) {
+      const el = document.getElementById(id)
+      if (el) io.observe(el)
+    }
+    return () => io.disconnect()
+  }, [])
+
+  /* ── Cmd+K hint button ── */
+  const openPalette = useCallback(() => {
+    window.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'k', metaKey: true, bubbles: true }),
+    )
   }, [])
 
   return (
@@ -50,7 +78,11 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-muted hover:text-primary transition-colors font-mono"
+                className={`transition-colors font-mono ${
+                  activeSection === link.id
+                    ? 'text-accent font-semibold'
+                    : 'text-muted hover:text-primary'
+                }`}
               >
                 {link.label}
               </a>
@@ -58,13 +90,25 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
           </div>
 
           {/* Right section */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            {/* Search (Cmd+K) */}
+            <button
+              onClick={openPalette}
+              className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded border border-border text-xs text-muted hover:text-primary hover:border-primary/40 transition-colors font-mono"
+              aria-label="Open command palette"
+            >
+              <Icon icon="search" />
+              <kbd className="text-[10px]">⌘K</kbd>
+            </button>
+
             <ThemeToggle theme={theme} toggle={toggleTheme} />
+
             {PERSONAL.available && (
-              <span className="hidden md:inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800 font-mono">
+              <span className="hidden lg:inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800 font-mono">
                 STATUS: AVAILABLE
               </span>
             )}
+
             <a
               href={`mailto:${PERSONAL.email}`}
               className="hidden sm:inline-flex bg-solid hover:bg-solid-hover text-on-solid px-4 py-2 rounded text-sm font-medium transition-colors"
@@ -91,7 +135,9 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block text-muted hover:text-primary transition-colors font-mono text-sm"
+                className={`block transition-colors font-mono text-sm ${
+                  activeSection === link.id ? 'text-accent font-semibold' : 'text-muted hover:text-primary'
+                }`}
               >
                 {link.label}
               </a>

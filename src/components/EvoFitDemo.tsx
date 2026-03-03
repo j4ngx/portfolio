@@ -410,7 +410,7 @@ export default function EvoFitDemo() {
   const [screen, setScreen] = useState<Screen>('dashboard')
 
   return (
-    <div className="flex h-full w-full items-center justify-center gap-6">
+    <div className="flex h-full w-full items-center justify-center gap-6" role="region" aria-label="EvoFit mobile app demo">
       {/* Phone mockup */}
       <div className="relative flex flex-col w-[280px] h-full max-h-[480px] bg-[#0c0c0e] rounded-[2rem] border-2 border-white/10 shadow-2xl overflow-hidden">
         {/* Notch */}

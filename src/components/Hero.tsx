@@ -1,6 +1,7 @@
-import { PERSONAL, HERO_DESCRIPTION } from '../data/portfolio'
+import { PERSONAL, HERO_DESCRIPTION, HERO_ROLES } from '../data/portfolio'
 import Icon from './Icon'
 import Terminal from './Terminal'
+import TypeWriter from './TypeWriter'
 import FadeInSection from './FadeInSection'
 
 export default function Hero() {
@@ -16,20 +17,28 @@ export default function Hero() {
         {/* Left column – text */}
         <div className="space-y-8">
           <FadeInSection>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-surface border border-border text-xs font-mono text-primary font-semibold">
-              <Icon icon="security" />
-              BACKEND PYTHON DEVELOPER & TECH LEAD
+            <div className="flex items-center gap-5">
+              {/* Professional photo */}
+              <img
+                src={PERSONAL.photo}
+                alt={PERSONAL.name}
+                className="w-20 h-20 rounded-full object-cover border-2 border-border shadow-md flex-shrink-0"
+              />
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-surface border border-border text-xs font-mono text-primary font-semibold">
+                  <Icon icon="security" />
+                  BACKEND PYTHON DEVELOPER & TECH LEAD
+                </div>
+              </div>
             </div>
           </FadeInSection>
 
           <FadeInSection delay={100}>
             <h1 className="text-5xl md:text-6xl font-extrabold text-primary leading-tight tracking-tight">
               Building <br />
-              <span className="text-accent">
-                Secure Backend
-              </span>
+              <TypeWriter phrases={HERO_ROLES} />
               <br />
-              Infrastructures.
+              <span className="text-subtle text-3xl md:text-4xl font-bold">Infrastructures.</span>
             </h1>
           </FadeInSection>
 
@@ -84,6 +93,17 @@ export default function Hero() {
                   description
                 </span>
                 Professional History
+              </a>
+              <a
+                href={PERSONAL.cv}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 border border-border text-primary hover:bg-surface px-6 py-3 rounded font-medium transition-all"
+              >
+                <span className="material-symbols-outlined group-hover:scale-110 transition-transform">
+                  download
+                </span>
+                Download CV
               </a>
               <a
                 href="#projects"

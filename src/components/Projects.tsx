@@ -76,7 +76,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {/* Outcomes bar */}
           {project.outcomes.length > 0 && (
             <div className="mt-8 pt-6 border-t border-border">
-              <div className={`grid grid-cols-${Math.min(project.outcomes.length, 4)} gap-6`}>
+              <div className={`grid gap-6 ${
+                ({ 1: 'grid-cols-1', 2: 'grid-cols-2', 3: 'grid-cols-3' } as Record<number, string>)[Math.min(project.outcomes.length, 3)] ?? 'grid-cols-2 md:grid-cols-4'
+              }`}>
                 {project.outcomes.map((o, i) => (
                   <div key={i} className="text-center">
                     <span className="text-2xl md:text-3xl font-bold text-primary block">

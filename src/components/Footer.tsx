@@ -36,7 +36,7 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="text-on-solid/30">v3.2.1 build_{year}_rev2</div>
+        <div className="text-on-solid/30">© {year} · Built with React + Tailwind</div>
       </div>
     </footer>
   )
